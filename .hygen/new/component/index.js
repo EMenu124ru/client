@@ -22,6 +22,11 @@ module.exports = {
       .prompt(questions)
       .then(answers => {
         const { category, component_name, dir } = answers
+        switch (category){
+          case 'features':
+            const absPath = `src/components/${path}`
+        }
+
         const path = `${category}/${ dir ? `${dir}/` : `` }${component_name}`
         const absPath = `src/components/${path}`
         return { ...answers, path, absPath, category }

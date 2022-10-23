@@ -15,12 +15,17 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["./src/assets/*"],
+      "@features/*": ["./src/features/*"],
+      "@api/*": ["./src/api/*"]
+    }
   },
   "include": [
     "src",
     ".eslintrc.js",
     ".stylelintrc.js",
-    "vite.config.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["**/node_modules"]

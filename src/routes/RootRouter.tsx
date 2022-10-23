@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
-import { postsRoutes } from '../features/posts/routes';
+import { authRoutes } from '@features/auth/routes';
 
 const routes: RouteObject[] = [
   {
     path: '*',
-    element: <Navigate to="/posts" />,
+    element: <Navigate to="/auth" />,
   },
-  ...postsRoutes,
+  ...authRoutes,
 ];
 
 /** Root router component. */
