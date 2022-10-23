@@ -1,36 +1,33 @@
 import React, { FC, memo } from 'react';
-import { Box, Button, TextField } from '@mui/material';
 import './LoginPage.scss';
-import { LoginBackgroundLayout } from '../../components/LoginBackgroundLayout/LoginBackgroundLayout';
+import { LoginForm } from '@features/auth/components/LoginForm';
+import { LoginBackgroundLayout } from '@features/auth/components/LoginBackgroundLayout';
+import { GreetingText } from '@features/auth/components/GreetingText';
+import { Grid } from '@mui/material';
+import Dish from '@assets/images/dish-image.png';
 
 /**
  * Login page component.
  */
 const LoginPageComponent: FC = () => (
   <LoginBackgroundLayout>
-    <Box
-      className="auth__box_buttons"
+    <Grid
+      className="auth__grid_form_login"
+      container
+      spacing={8}
+      justifyContent="center"
+      alignItems="center"
     >
-      <TextField
-        className="auth__input-text"
-        required
-        placeholder="Номер телефона"
-      />
-      <TextField
-        className="auth__input-text"
-        required
-        placeholder="Пароль"
-      />
-      <Button
-        className="auth__button-enter"
-        variant="authMain"
-      >
-        Войти
-      </Button>
-      <Button>
-        Регистрация
-      </Button>
-    </Box>
+      <Grid item xs={6} md={4}>
+        <GreetingText />
+      </Grid>
+      <Grid item xs={4} sx={{ display: { xs: 'none', md: 'block' } }}>
+        <img src={Dish} alt="No source :(" className="auth__image_dish" />
+      </Grid>
+      <Grid item xs={6} md={4}>
+        <LoginForm />
+      </Grid>
+    </Grid>
   </LoginBackgroundLayout>
 );
 

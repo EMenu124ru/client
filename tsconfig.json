@@ -15,11 +15,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@assets/*": ["./src/assets/*"],
-      "@features/*": ["./src/features/*"],
-      "@api/*": ["./src/api/*"]
+      "@assets/*": ["assets/*"],
+      "@features/*": ["features/*"],
+      "@api/*": ["api/*"]
     }
   },
   "include": [

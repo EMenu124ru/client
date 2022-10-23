@@ -1,0 +1,8 @@
+@import "src/theme";
+
+.auth__grid_form_sigun {
+  @extend %auth_grid_form
+}
+.auth__image_dish {
+  @extend %image_dish
+}

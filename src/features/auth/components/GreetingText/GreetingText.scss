@@ -1,0 +1,28 @@
+.auth__hello_guest_text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth__hello_guest_main_text {
+
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 52px;
+
+  color: #FFFFFF;
+}
+
+.auth__hello_guest_sub_text {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 33px;
+  text-align: justify;
+
+  color: #FFFFFF;
+}

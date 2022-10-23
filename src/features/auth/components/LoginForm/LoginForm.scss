@@ -1,0 +1,19 @@
+@import "src/theme";
+
+.auth__input_text_login {
+  @extend %auth_input_text;
+}
+
+.auth__button_enter {
+  color: $auth-text-input-color;
+}
+
+.auth__box_buttons {
+  @extend %auth_box_buttons;
+}
+
+.auth__form_text_login {
+  font-family: 'Raleway', serif;
+  @extend %auth_form_text;
+}
+

@@ -1,0 +1,10 @@
+@import "variables";
+
+@mixin auth_orange_background($file-name) {
+  position: absolute;
+  height: 100%;
+  width: 60%;
+  z-index: -1;
+  background:url('#{$asset-path}/#{$file-name}') no-repeat;
+  background-size:100% 100%;
+}
