@@ -1,11 +1,6 @@
 import { FC, memo, PropsWithChildren } from 'react';
 import './SignUpBackgroundLayout.scss';
 import AuthLogo from '@assets/images/auth-logo.png'
-
-/**
- * Signing up background layout.
- * @param children Children components.
- */
 export const SignUpBackgroundLayoutComponent: FC<PropsWithChildren> = ({ children }) => (
   <div className="auth__black_shape_background_signup">
     <img src={AuthLogo} alt="No source :(" className="auth__logo" />
