@@ -1,5 +1,5 @@
 import { FC, memo, PropsWithChildren } from 'react';
-import './SignUpBackgroundLayout.scss";
+import './SignUpBackgroundLayout.scss';
 import AuthLogo from '@assets/images/auth-logo.png'
 
 /**
