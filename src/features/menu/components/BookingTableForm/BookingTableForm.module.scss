@@ -1,0 +1,80 @@
+.bookingTableForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  gap: 16px;
+  min-width: 300px;
+
+  .submitButton {
+    color: white;
+  }
+
+  .selectTypesOfPlace {
+    box-sizing: border-box;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAEECD;
+    width: 80%;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+
+    &:global(.Mui-focused) {
+      background-color: #FAEECD;
+    }
+
+    &:hover{
+      background-color: #FAEECD;
+    }
+
+
+    div {
+      padding-top: 15px;
+      padding-bottom: 15px;
+
+      &:focus {
+        background-color: transparent;
+      }
+
+    }
+  }
+
+  .availableTables {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 31px;
+    gap: 10px;
+    width: 80%;
+    background: #FAEECD;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+  }
+
+  .commentInput {
+    width: 80%;
+    border-radius: 20px;
+    background: #FAEECD;
+    input {
+      color: black;
+    }
+
+  }
+
+}
+
+ul {
+  .option {
+    color: black;
+    background-color: #FAEECD;
+  }
+
+  background-color: #FAEECD;
+}
+
+

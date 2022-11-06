@@ -1,16 +1,16 @@
 import { Box, Typography } from '@mui/material';
 import { FC, memo } from 'react';
-import './GreetingText.scss';
+import style from './GreetingText.module.scss';
 
 /**
  * Greeting text to user.
  */
 const GreetingTextComponent: FC = () => (
-  <Box className="auth__hello_guest_text">
-    <Typography variant="h3" className="auth__hello_guest_main_text">
+  <Box className={style.wrapper}>
+    <Typography variant="h3" className={style.mainText}>
       Добро пожаловать!
     </Typography>
-    <Typography variant="body1" className="auth__hello_guest_sub_text">
+    <Typography variant="body1" className={style.subText}>
       Система “Мобильный официант” меняет привычный поход в ресторан:
       теперь бронирование столика и заказ можно сделать в несколько кликов!
     </Typography>

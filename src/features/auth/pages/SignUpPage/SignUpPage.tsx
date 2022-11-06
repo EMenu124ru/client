@@ -3,8 +3,8 @@ import { Grid } from '@mui/material';
 import { GreetingText } from '@features/auth/components/GreetingText';
 import Dish from '@assets/images/dish-image.png';
 import { SignUpBackgroundLayout } from '@features/auth/components/SignUpBackgroundLayout';
-import './SignUpPage.scss';
 import { SignUpForm } from '@features/auth/components/SignUpForm/SignUpForm';
+import styles from './SignUpPage.module.scss';
 
 /**
  * Sign up page.
@@ -12,7 +12,7 @@ import { SignUpForm } from '@features/auth/components/SignUpForm/SignUpForm';
 const SignUpPageComponent: FC = () => (
   <SignUpBackgroundLayout>
     <Grid
-      className="auth__grid_form_sigun"
+      className={styles.signUpForm}
       container
       spacing={8}
       justifyContent="center"
@@ -22,7 +22,7 @@ const SignUpPageComponent: FC = () => (
         <SignUpForm />
       </Grid>
       <Grid item xs={4} sx={{ display: { xs: 'none', md: 'block' } }}>
-        <img src={Dish} alt="No source :(" className="auth__image_dish" />
+        <img src={Dish} alt="No source :(" className={styles.dishImage} />
       </Grid>
       <Grid item xs={6} md={4}>
         <GreetingText />

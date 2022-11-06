@@ -5,6 +5,9 @@ declare module '@mui/material/Button' {
 
     /** Auth main button theme. */
     'authMain': true;
+
+    /** Dish card button theme. */
+    'cardDishButton': true;
   }
 }
 
@@ -15,9 +18,23 @@ export const themeOptions = createTheme({
         {
           props: { variant: 'authMain' },
           style: {
+            'color': '#FFE1A7',
             'backgroundColor': '#D98F00',
             'boxShadow': '0px 4px 25px rgba(0, 0, 0, 0.08)',
             'width': '100%',
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            ':hover': {
+              backgroundColor: '#D98F00',
+            },
+          },
+        },
+        {
+          props: { variant: 'cardDishButton' },
+          style: {
+            'boxShadow': '0px 4px 25px rgba(0, 0, 0, 0.08)',
+            'backgroundColor': '#D98F00',
+            'borderRadius': '20px',
+            'width': '80%',
             // eslint-disable-next-line @typescript-eslint/naming-convention
             ':hover': {
               backgroundColor: '#D98F00',

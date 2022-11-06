@@ -1,1 +1,1 @@
-export * from './SignUpBackgroundLayout'
+export * from './SignUpBackgroundLayout';

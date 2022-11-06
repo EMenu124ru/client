@@ -11,3 +11,5 @@ export namespace PostService {
     return data.map(dto => PostMapper.fromDto(dto));
   }
 }
+
+// const users = await fetchwWrapper('post', 'users', {})

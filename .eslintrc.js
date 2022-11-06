@@ -5,34 +5,35 @@ module.exports = {
     project: ['tsconfig.json'],
   },
   plugins: ['jsdoc'],
-  extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
-    'plugin:@typescript-eslint/recommended',
-  ],
+  extends: ['airbnb', 'airbnb-typescript', 'airbnb/hooks', 'plugin:@typescript-eslint/recommended', 'plugin:storybook/recommended'],
   rules: {
-    'react/jsx-filename-extension': ['error', { extensions: ['.ts', '.tsx'] }],
+    'react/require-default-props': 'off',
+    'react/jsx-filename-extension': [
+      'error', {
+        extensions: ['.ts', '.tsx'],
+      },
+    ],
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+    'react/jsx-no-useless-fragment': [
+      'error', {
+        allowExpressions: true,
+      },
+    ],
     'react/jsx-key': 'error',
-    'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
+    'react/function-component-definition': [
+      'error', {
+        namedComponents: 'arrow-function',
+      },
+    ],
     'react/prop-types': 'off',
     'react-hooks/exhaustive-deps': 'off',
-
     '@typescript-eslint/space-before-function-paren': ['error', 'never'],
     '@typescript-eslint/consistent-type-definitions': 'error',
     '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/no-parameter-properties': [
-      'error',
-      {
-        allows: [
-          'private',
-          'private readonly',
-          'protected readonly',
-          'public readonly',
-        ],
+      'error', {
+        allows: ['private', 'private readonly', 'protected readonly', 'public readonly'],
       },
     ],
     '@typescript-eslint/comma-spacing': 'error',
@@ -51,24 +52,20 @@ module.exports = {
     '@typescript-eslint/explicit-member-accessibility': 'error',
     '@typescript-eslint/member-ordering': 'error',
     '@typescript-eslint/naming-convention': [
-      'warn',
-      {
+      'warn', {
         selector: 'default',
         format: ['camelCase', 'PascalCase'],
         leadingUnderscore: 'allow',
         trailingUnderscore: 'allow',
-      },
-      {
+      }, {
         selector: 'variable',
         format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
         leadingUnderscore: 'allow',
         trailingUnderscore: 'allow',
-      },
-      {
+      }, {
         selector: 'typeLike',
         format: ['PascalCase'],
-      },
-      {
+      }, {
         selector: 'enumMember',
         format: ['PascalCase'],
       },
@@ -83,14 +80,12 @@ module.exports = {
     '@typescript-eslint/require-array-sort-compare': 'error',
     '@typescript-eslint/switch-exhaustiveness-check': 'error',
     '@typescript-eslint/no-empty-interface': [
-      'error',
-      {
+      'error', {
         allowSingleExtends: false,
       },
     ],
     '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
+      'error', {
         vars: 'all',
         args: 'after-used',
         ignoreRestSiblings: false,
@@ -101,14 +96,12 @@ module.exports = {
     '@typescript-eslint/type-annotation-spacing': 'error',
     '@typescript-eslint/unified-signatures': 'error',
     '@typescript-eslint/explicit-function-return-type': [
-      'error',
-      {
+      'error', {
         allowExpressions: true,
       },
     ],
     '@typescript-eslint/comma-dangle': [
-      'error',
-      {
+      'error', {
         arrays: 'always-multiline',
         objects: 'always-multiline',
         imports: 'always-multiline',
@@ -121,8 +114,7 @@ module.exports = {
     ],
     '@typescript-eslint/semi': ['error', 'always'],
     '@typescript-eslint/member-delimiter-style': [
-      'error',
-      {
+      'error', {
         multiline: {
           delimiter: 'semi',
           requireLast: true,
@@ -134,18 +126,11 @@ module.exports = {
       },
     ],
     '@typescript-eslint/indent': [
-      'error',
-      2,
-      {
+      'error', 2, {
         SwitchCase: 1,
-        ignoredNodes: [
-          'TSTypeAliasDeclaration *',
-          'TSTypeParameterInstantiation > *',
-          'TSTypeAnnotation',
-        ],
+        ignoredNodes: ['TSTypeAliasDeclaration *', 'TSTypeParameterInstantiation > *', 'TSTypeAnnotation'],
       },
     ],
-
     'jsdoc/require-example': 'off',
     'jsdoc/require-file-overview': 'off',
     'jsdoc/require-hyphen-before-param-description': 'off',
@@ -162,8 +147,7 @@ module.exports = {
     'jsdoc/newline-after-description': ['error', 'never'],
     'jsdoc/no-bad-blocks': 'error',
     'jsdoc/require-jsdoc': [
-      'error',
-      {
+      'error', {
         contexts: [
           'MethodDefinition:not([accessibility=\'private\'])',
           'ClassDeclaration',
@@ -182,26 +166,22 @@ module.exports = {
       },
     ],
     'jsdoc/require-description-complete-sentence': [
-      'error',
-      {
+      'error', {
         tags: ['see', 'copyright'],
       },
     ],
     'jsdoc/require-param': [
-      'error',
-      {
+      'error', {
         checkDestructuredRoots: false,
       },
     ],
     'jsdoc/require-param-name': 'error',
     'jsdoc/require-param-description': 'error',
     'jsdoc/no-types': 'error',
-
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     'import/no-deprecated': 'error',
-
     'getter-return': 'error',
     'no-async-promise-executor': 'error',
     'no-await-in-loop': 'error',
@@ -250,8 +230,7 @@ module.exports = {
     'no-constructor-return': 'error',
     'no-else-return': 'error',
     'no-empty-function': [
-      'warn',
-      {
+      'warn', {
         allow: ['constructors'],
       },
     ],
@@ -301,8 +280,7 @@ module.exports = {
     'no-shadow-restricted-names': 'error',
     'no-shadow': 'off',
     'array-bracket-newline': [
-      'error',
-      {
+      'error', {
         multiline: true,
       },
     ],
@@ -315,28 +293,24 @@ module.exports = {
     'function-call-argument-newline': ['error', 'consistent'],
     'function-paren-newline': ['error', 'consistent'],
     'key-spacing': [
-      'error',
-      {
+      'error', {
         mode: 'strict',
       },
     ],
     'keyword-spacing': [
-      'error',
-      {
+      'error', {
         after: true,
         before: true,
       },
     ],
     'line-comment-position': [
-      'error',
-      {
+      'error', {
         position: 'above',
       },
     ],
     'linebreak-style': 'off',
     'lines-around-comment': [
-      'error',
-      {
+      'error', {
         beforeLineComment: true,
         allowBlockStart: true,
         allowBlockEnd: true,
@@ -351,8 +325,7 @@ module.exports = {
     'lines-between-class-members': ['error', 'always'],
     'max-depth': ['error', 3],
     'max-len': [
-      'error',
-      {
+      'error', {
         code: 140,
       },
     ],
@@ -360,8 +333,7 @@ module.exports = {
     'max-lines-per-function': 'off',
     'max-params': 'off',
     'max-statements-per-line': [
-      'error',
-      {
+      'error', {
         max: 1,
       },
     ],
@@ -373,16 +345,14 @@ module.exports = {
     'no-unneeded-ternary': 'error',
     'no-whitespace-before-property': 'error',
     'object-curly-newline': [
-      'error',
-      {
+      'error', {
         multiline: true,
         consistent: true,
       },
     ],
     'object-curly-spacing': ['error', 'always'],
     'object-property-newline': [
-      'error',
-      {
+      'error', {
         allowAllPropertiesOnSameLine: true,
       },
     ],
@@ -393,9 +363,7 @@ module.exports = {
     'prefer-object-spread': 'error',
     'quote-props': ['error', 'consistent-as-needed'],
     'quotes': [
-      'error',
-      'single',
-      {
+      'error', 'single', {
         allowTemplateLiterals: true,
       },
     ],
@@ -406,17 +374,14 @@ module.exports = {
     'arrow-parens': ['error', 'as-needed'],
     'arrow-spacing': 'error',
     'object-shorthand': [
-      'error',
-      'always',
-      {
+      'error', 'always', {
         avoidExplicitReturnArrows: true,
       },
     ],
     'no-undef-init': 'error',
     'no-debugger': 'off',
     'newline-per-chained-call': [
-      'error',
-      {
+      'error', {
         ignoreChainWithDepth: 2,
       },
     ],
@@ -429,8 +394,7 @@ module.exports = {
     'prefer-arrow-callback': 'error',
     'prefer-arrow/prefer-arrow-functions': 'off',
     'prefer-destructuring': [
-      'error',
-      {
+      'error', {
         object: true,
         array: false,
       },
@@ -441,9 +405,7 @@ module.exports = {
     'template-curly-spacing': ['error', 'never'],
     'symbol-description': 'error',
     'func-style': [
-      'error',
-      'declaration',
-      {
+      'error', 'declaration', {
         allowArrowFunctions: true,
       },
     ],
@@ -458,9 +420,21 @@ module.exports = {
       },
     },
     {
+      files: ['*.stories.tsx'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+        'lines-around-comment': 'off',
+        'jsdoc/require-jsdoc': 'off',
+      },
+    },
+    {
       files: ['*Mapper.ts'],
       rules: {
-        '@typescript-eslint/naming-convention': ['off', { selector: 'property' }],
+        '@typescript-eslint/naming-convention': [
+          'off', {
+            selector: 'property',
+          },
+        ],
       },
     },
     {
@@ -473,12 +447,10 @@ module.exports = {
       files: ['**/dtos/**/*.ts'],
       rules: {
         'no-restricted-syntax': [
-          'error',
-          {
+          'error', {
             selector: 'TSPropertySignature[readonly=undefined]',
             message: 'Missing \'readonly\' modifier for the DTO property.',
-          },
-          {
+          }, {
             selector: 'TSPropertySignature TSTypeAnnotation[typeAnnotation.type=\'TSArrayType\']',
             message: 'Missing \'readonly\' type modifier for array.',
           },

@@ -1,0 +1,88 @@
+@import "/src/theme";
+
+.logo {
+  width: 120px;
+  height: 34px;
+  margin-right: 1rem;
+}
+
+.menuPages {
+  flex-grow: 1;
+  display: flex;
+  @media screen and (min-width: $md) {
+    display: none;
+  }
+}
+
+.dropDownMenu {
+  @media screen and (min-width: $xs) {
+    display: block;
+  }
+  @media screen and (min-width: $md) {
+    display: none;
+  }
+
+  :global(.MuiPopover-paper) {
+    background-color: #FAEECD;
+    .menuPage {
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    color: black;
+    }
+  }
+
+}
+
+.titlePages {
+  flex-grow: 1;
+  @media screen and (min-width: $xs) and (max-width: $md){
+    display: none;
+  }
+  @media screen and (min-width: $md) {
+    display: flex;
+  }
+
+  .titlePage {
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: black;
+    margin: 2rem 10px;
+    display: block;
+  }
+}
+
+.places {
+  display: flex;
+  flex-grow: 0;
+  align-items: center;
+}
+
+
+
+
+.popOverMenuPlaces :global(.MuiPopover-paper) {
+  background-color: #FAEECD;
+
+  .menuArea {
+    background-color: #FAEECD;
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .menuPlace  {
+    background-color: #FAEECD;
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    color: black;
+  }
+
+}

@@ -2,7 +2,7 @@ import { lazy } from 'react';
 import { Navigate, RouteObject } from 'react-router-dom';
 
 const LoginPage = lazy(() => import('./pages/LoginPage').then(module => ({ default: module.LoginPage })));
-const SugnUpPage = lazy(() => import('./pages/SignUpPage').then(module => ({ default: module.SignUpPage })));
+const SignUpPage = lazy(() => import('./pages/SignUpPage').then(module => ({ default: module.SignUpPage })));
 export const authRoutes: RouteObject[] = [
   {
     path: 'auth',
@@ -13,7 +13,7 @@ export const authRoutes: RouteObject[] = [
       },
       {
         path: 'signup',
-        element: <SugnUpPage />,
+        element: <SignUpPage />,
       },
       {
         path: '',

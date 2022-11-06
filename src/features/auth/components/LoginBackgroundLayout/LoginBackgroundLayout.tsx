@@ -1,15 +1,15 @@
 import { FC, memo, PropsWithChildren } from 'react';
-import './LoginBackgroundLayout.scss';
 import AuthLogo from '@assets/images/auth-logo.png';
+import styles from './LoginBackgroundLayout.module.scss';
 
 /**
  * Children inside component.
  * @param children Children components.
  */
 const LoginBackgroundLayoutComponent: FC<PropsWithChildren> = ({ children }) => (
-  <div className="auth__black_shape_background_login">
-    <img src={AuthLogo} alt="No source :(" className="auth__logo" />
-    <div className="auth__orange_background_login" />
+  <div className={styles.blackBackground}>
+    <img src={AuthLogo} alt="No source :(" className={styles.logo} />
+    <div className={styles.orangeBackground} />
     {children}
   </div>
 );

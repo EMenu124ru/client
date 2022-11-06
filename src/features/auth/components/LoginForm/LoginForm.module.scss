@@ -1,18 +1,18 @@
 @import "src/theme";
 
-.auth__input_text_login {
+.inputTextLogin {
   @extend %auth_input_text;
 }
 
-.auth__button_enter {
-  color: $auth-text-input-color;
+.buttonEnter {
+  color: $cream-color-input;
 }
 
-.auth__box_buttons {
+.boxButtons {
   @extend %auth_box_buttons;
 }
 
-.auth__form_text_login {
+.textLogin {
   font-family: 'Raleway', serif;
   @extend %auth_form_text;
 }

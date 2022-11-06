@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, TextField } from '@mui/material';
 import React, { FC } from 'react';
-import './SignUpForm.scss';
+import styles from './SignUpForm.module.scss';
 
 /**
  * Sign up form group.
@@ -18,33 +18,33 @@ export const SignUpForm: FC = () => {
 
   return (
     <Box
-      className="auth__box_buttons"
+      className={styles.boxButtons}
     >
-      <text className="auth__form_text_signup">
+      <text className={styles.signupText}>
         Регистрация
       </text>
       <TextField
-        className="auth__input_text_signup"
+        className={styles.signupInputText}
         required
         placeholder="Фамилия"
       />
       <TextField
-        className="auth__input_text_signup"
+        className={styles.signupInputText}
         required
         placeholder="Имя"
       />
       <TextField
-        className="auth__input_text_signup"
+        className={styles.signupInputText}
         required
         placeholder="Номер телефона"
       />
       <TextField
-        className="auth__input_text_signup"
+        className={styles.signupInputText}
         required
         placeholder="Пароль"
       />
       <Button
-        className="auth__button_enter"
+        className={styles.enterButton}
         variant="authMain"
       >
         Регистрация

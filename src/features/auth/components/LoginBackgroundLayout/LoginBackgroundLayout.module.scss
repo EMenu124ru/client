@@ -1,12 +1,12 @@
 @import "src/theme";
-.auth__orange_background_login {
+.orangeBackground {
   @include auth_orange_background('login-background.png')
 }
 
-.auth__black_shape_background_login {
+.blackBackground {
   @extend %auth_black_shape_background
 }
 
-.auth__logo {
+.logo {
   @extend %auth_logo
 }

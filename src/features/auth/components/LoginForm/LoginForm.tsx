@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from '@mui/material';
 import React, { FC, memo } from 'react';
-import './LoginForm.scss';
 import { useNavigate } from 'react-router-dom';
+import styles from './LoginForm.module.scss';
 
 /**
  * Login form.
@@ -18,23 +18,23 @@ const LoginFormComponent: FC = () => {
 
   return (
     <Box
-      className="auth__box_buttons"
+      className={styles.boxButtons}
     >
-      <text className="auth__form_text_login">
+      <text className={styles.textLogin}>
         Авторизация
       </text>
       <TextField
-        className="auth__input_text_login"
+        className={styles.inputTextLogin}
         required
         placeholder="Номер телефона"
       />
       <TextField
-        className="auth__input_text_login"
+        className={styles.inputTextLogin}
         required
         placeholder="Пароль"
       />
       <Button
-        className="auth__button_enter"
+        className={styles.buttonEnter}
         variant="authMain"
       >
         Войти

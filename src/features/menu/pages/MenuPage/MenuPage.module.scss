@@ -1,0 +1,19 @@
+body {
+  background: radial-gradient(53.62% 55.73% at 55.24% 50.68%, #FFE9B0 36.46%, #E3CD92 100%);
+}
+
+.menuPage {
+  min-width: 900px;
+  height: 100%;
+  .mainContent {
+    padding: 10px 10px 0 10px;
+    .bookingTableFormWrapper {
+      align-items: end;
+    }
+  }
+
+  //.dishesWrapper {
+  //  max-height: 80vh;
+  //  overflow: auto;
+  //}
+}

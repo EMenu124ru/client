@@ -1,8 +1,8 @@
 @import "src/theme";
-.auth__grid_form_login {
+.gridForm {
   @extend %auth_grid_form;
 }
 
-.auth__image_dish {
+.dishImage {
   @extend %image_dish;
 }

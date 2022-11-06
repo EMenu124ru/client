@@ -1,0 +1,42 @@
+.quantityBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 72px;
+
+  width: 80%;
+  height: 50px;
+
+  background-color: #CEB689;
+  /* shadow */
+
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.mainButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 21px 35px;
+  gap: 10px;
+  width: 80%;
+  height: 50px;
+
+  background: #D98F00;
+  /* shadow */
+
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.buttonsGroup {
+  width: 100%;
+  .changeQuantityButton {
+    font-size: 2.3rem;
+  }
+}
+
+
