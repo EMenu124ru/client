@@ -71,7 +71,7 @@ export const MenuBarComponent: FC = () => {
   };
 
   return (
-    <AppBar position="static" className={styles.appBar}>
+    <AppBar component="nav" className={styles.appBar}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img className={styles.logo} src={logo} alt="No source :(" />

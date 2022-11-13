@@ -29,7 +29,7 @@ export const MenuPage: FC = () => (
   <div className={styles.menuPage}>
     <MenuBar />
     <Grid container className={styles.mainContent} spacing={4}>
-      <Grid item xs="auto">
+      <Grid className={styles.foodCategories} item xs="auto">
         <FoodCategories />
       </Grid>
       <Grid className={styles.dishesWrapper} item container columnSpacing={3} rowSpacing={4} xs={5} md={6} lg={7} xl={8}>
@@ -40,7 +40,7 @@ export const MenuPage: FC = () => (
           </Grid>
         ))}
       </Grid>
-      <Grid item xs={1} md={2} className={styles.bookingTableFormWrapper}>
+      <Grid className={styles.bookingTableFormWrapper} item xs={1} md={2}>
         <BookingTableForm />
       </Grid>
     </Grid>

@@ -3,17 +3,30 @@ body {
 }
 
 .menuPage {
+  padding-top: 90px;
   min-width: 900px;
   height: 100%;
+
   .mainContent {
     padding: 10px 10px 0 10px;
+
     .bookingTableFormWrapper {
+      position: sticky;
       align-items: end;
     }
+
+    .foodCategories, .bookingTableFormWrapper {
+      div {
+        top: 10vh;
+        position: -webkit-sticky;
+        position: sticky;
+      }
+    }
+
   }
 
+
   //.dishesWrapper {
-  //  max-height: 80vh;
   //  overflow: auto;
   //}
 }
