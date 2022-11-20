@@ -19,7 +19,10 @@
     "paths": {
       "@assets/*": ["assets/*"],
       "@features/*": ["features/*"],
-      "@api/*": ["api/*"]
+      "@api/*": ["api/*"],
+      "@models/*": ["models/*"],
+      "@lib/*": ["lib/*"],
+      "@store/*": ["store/*"]
     }
   },
   "include": [

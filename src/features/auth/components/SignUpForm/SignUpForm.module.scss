@@ -2,18 +2,15 @@
 
 .boxButtons {
   @extend %auth_box_buttons;
+  .signupInput {
+    @extend %auth_input_text;
+  }
 }
 
-.signupInputText {
-  @extend %auth_input_text;
-}
+
 
 .enterButton {
   color: $cream-color-input;
-}
-
-.boxButtons {
-  @extend %auth_box_buttons;
 }
 
 .signupText {

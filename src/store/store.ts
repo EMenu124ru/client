@@ -2,12 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import {
   TypedUseSelectorHook, useDispatch, useSelector,
 } from 'react-redux';
-
-import { postsSlice } from './post/slice';
+import { authSlice } from './auth/slice';
 
 export const store = configureStore({
   reducer: {
-    posts: postsSlice.reducer,
+    auth: authSlice.reducer,
   },
   // eslint-disable-next-line jsdoc/require-jsdoc
   middleware: getDefaultMiddleware => getDefaultMiddleware({
