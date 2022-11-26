@@ -20,7 +20,7 @@ job("Run npm test and publish") {
         api.space().projects.automation.deployments.start(
             project = api.projectIdentifier(),
             targetIdentifier = TargetIdentifier.Key("ssh-root-62-113-96-162"),
-            version = "1.0.0",
+            version = "1.0.${'$'}JB_SPACE_EXECUTION_NUMBER",
             // automatically update deployment status based on a status of a job
             syncWithAutomationJob = true
         )
