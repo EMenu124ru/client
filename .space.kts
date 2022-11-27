@@ -1,4 +1,10 @@
 job("Run npm test and publish") {
+    
+    failOn {
+        testFailed {  enabled = false  }
+        nonZeroExitCode { enabled = false }
+    }
+    
     startOn {
         gitPush {
             // run on changes in all 'release-...'
