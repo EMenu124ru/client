@@ -5,7 +5,7 @@ job("Run npm test and publish") {
             // branches excluding 'release-main'
             // exclude rules have priority
             branchFilter {
-                +Regex("main)
+                +"main"
             }
             pathFilter {
                 +"src/**"
