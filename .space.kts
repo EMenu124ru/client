@@ -7,15 +7,12 @@ job("Run npm test and publish") {
 
   startOn {
     gitPush {
-      // run on changes in all 'release-...'
-      // branches excluding 'release-main'
-      // exclude rules have priority
       branchFilter {
         +"main"
       }
-      pathFilter {
-        +"src/**"
-      }
+      //pathFilter {
+      //  +"src/**"
+      //}
     }
   }
 
