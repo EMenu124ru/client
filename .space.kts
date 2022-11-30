@@ -1,24 +1,24 @@
 job("Run npm test and publish") {
-//
-//  failOn {
-//    testFailed { enabled = false }
-//    nonZeroExitCode { enabled = false }
-//  }
-//
-//  startOn {
-//    gitPush {
-//      // run on changes in all 'release-...'
-//      // branches excluding 'release-main'
-//      // exclude rules have priority
-//      branchFilter {
-//        +"main"
-//      }
-//      pathFilter {
-//        +"src/**"
-//      }
-//    }
-//  }
-//
+
+  failOn {
+    testFailed { enabled = false }
+    nonZeroExitCode { enabled = false }
+  }
+
+  startOn {
+    gitPush {
+      // run on changes in all 'release-...'
+      // branches excluding 'release-main'
+      // exclude rules have priority
+      branchFilter {
+        +"main"
+      }
+      pathFilter {
+        +"src/**"
+      }
+    }
+  }
+
 
   host("Build artifacts and a Docker image") {
 
@@ -36,7 +36,7 @@ job("Run npm test and publish") {
     dockerBuildPush {
       // Docker context, by default, project root
       file = "Dockerfile"
-      val spaceRepo = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
+      val spaceRepo = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client/main"
       tags {
         +"$spaceRepo:1.0.${"$"}JB_SPACE_EXECUTION_NUMBER"
         +"$spaceRepo:latest"
