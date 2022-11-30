@@ -1,23 +1,24 @@
 job("Run npm test and publish") {
-    failOn {
-        testFailed {  enabled = false  }
-        nonZeroExitCode { enabled = false }
-    }
-    
-    startOn {
-        gitPush {
-            // run on changes in all 'release-...'
-            // branches excluding 'release-main'
-            // exclude rules have priority
-            branchFilter {
-                +"main"
-            }
-            pathFilter {
-                +"src/**"
+    host("Build artifacts and a Docker image") {
+        
+        failOn {
+            testFailed {  enabled = false  }
+            nonZeroExitCode { enabled = false }
+        }
+
+        startOn {
+            gitPush {
+                // run on changes in all 'release-...'
+                // branches excluding 'release-main'
+                // exclude rules have priority
+                branchFilter {
+                    +"main"
+                }
+                pathFilter {
+                    +"src/**"
+                }
             }
         }
-    }
-    host("Build artifacts and a Docker image") {
          
         env["HUB_USER"] = Params("dockerhub_user")
         env["HUB_TOKEN"] = Secrets("dockerhub_token")
