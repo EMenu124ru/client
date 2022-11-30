@@ -21,6 +21,8 @@ job("Run npm test and publish") {
 
     env["HUB_USER"] = Params("dockerhub_user")
     env["HUB_TOKEN"] = Secrets("dockerhub_token")
+    env["SSH_PASS"] = Secrets('ssh_password')
+    env["SSH_IP"] = Params("ssh_ip")
     env["SPACE_REPO"] = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
 
     shellScript {
@@ -33,12 +35,21 @@ job("Run npm test and publish") {
     dockerBuildPush {
       // Docker context, by default, project root
       file = "Dockerfile"
-      val spaceRepo = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client/main"
+      val spaceRepo = "${"$"}/main"
       tags {
         +"$spaceRepo:1.0.${"$"}JB_SPACE_EXECUTION_NUMBER"
         +"$spaceRepo:latest"
       }
     }
+
+    shellScript {
+      content = """
+                    sudo apt-get install sshpass
+                    sshpass -p '${"$"}SSH_PASS' ssh root@${"$"}SSH_IP
+                    ./build-client-frontend.sh
+                """
+    }
+
   }
 }
 
