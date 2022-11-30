@@ -35,7 +35,7 @@ job("Run npm test and publish") {
     dockerBuildPush {
       // Docker context, by default, project root
       file = "Dockerfile"
-      val spaceRepo = "${"$"}/main"
+      val spaceRepo = "${"$"}SPACE_REPO/main"
       tags {
         +"$spaceRepo:1.0.${"$"}JB_SPACE_EXECUTION_NUMBER"
         +"$spaceRepo:latest"
