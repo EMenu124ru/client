@@ -44,3 +44,4 @@ job("Run npm test and publish") {
     }
   }
 }
+
