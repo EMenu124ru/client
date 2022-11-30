@@ -1,24 +1,24 @@
 job("Run npm test and publish") {
-
-  failOn {
-    testFailed { enabled = false }
-    nonZeroExitCode { enabled = false }
-  }
-
-  startOn {
-    gitPush {
-      // run on changes in all 'release-...'
-      // branches excluding 'release-main'
-      // exclude rules have priority
-      branchFilter {
-        +"main"
-      }
-      pathFilter {
-        +"src/**"
-      }
-    }
-  }
-
+//
+//  failOn {
+//    testFailed { enabled = false }
+//    nonZeroExitCode { enabled = false }
+//  }
+//
+//  startOn {
+//    gitPush {
+//      // run on changes in all 'release-...'
+//      // branches excluding 'release-main'
+//      // exclude rules have priority
+//      branchFilter {
+//        +"main"
+//      }
+//      pathFilter {
+//        +"src/**"
+//      }
+//    }
+//  }
+//
 
   host("Build artifacts and a Docker image") {
 
@@ -42,5 +42,5 @@ job("Run npm test and publish") {
         +"$spaceRepo:latest"
       }
     }
-//  }
+  }
 }
