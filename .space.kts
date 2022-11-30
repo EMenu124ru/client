@@ -35,10 +35,7 @@ job("Run npm test and publish") {
 
     dockerBuildPush {
       // Docker context, by default, project root
-      context = "."
       file = "Dockerfile"
-      labels["repo"] = "frontend"
-
       val spaceRepo = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
       tags {
         +"$spaceRepo:1.0.${"$"}JB_SPACE_EXECUTION_NUMBER"
