@@ -1,5 +1,10 @@
 job("Run npm test and publish") {
     
+    env["HUB_USER"] = Params("dockerhub_user")
+    env["HUB_TOKEN"] = Secrets("dockerhub_token")
+    env["SPACE_REPO"] = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
+
+    
     failOn {
         testFailed {  enabled = false  }
         nonZeroExitCode { enabled = false }
@@ -18,32 +23,26 @@ job("Run npm test and publish") {
             }
         }
     }
-    container(displayName = "Run publish script", image = "node:14-alpine") {
-        env["REGISTRY"] = "https://npm.pkg.jetbrains.space/ikit-ki20-161-b/p/team-course-project-2022-2023/client/"
-        shellScript {
-            interpreter = "/bin/sh"
+   
+   shellScript {
+            // login to Docker Hub
             content = """
-                echo Install npm dependencies...
-                npm ci
-                echo Run build if it exists in package.json...
-                npm run build --if-present
-                echo Run publishing...
-                chmod +x ./publish.sh
-                ./publish.sh
+                docker login ${'$'}SPACE_REPO -u ${'$'}HUB_USER --password "${'$'}HUB_TOKEN"
             """
+    }
+   
+    dockerBuildPush {
+            // Docker context, by default, project root
+            context = "."
+            file = "Dockerfile"
+            labels["repo"] = "frontend-client"
+
+            val spaceRepo = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
+            tags {
+                +"$spaceRepo:1.0.${"$"}JB_SPACE_EXECUTION_NUMBER"
+                +"$spaceRepo:latest"
+            }
         }
-    }
-    
-    container("openjdk:11") {
-    kotlinScript { api ->
-        api.space().projects.automation.deployments.start(
-            project = api.projectIdentifier(),
-            targetIdentifier = TargetIdentifier.Key("ssh-root-62-113-96-162"),
-            version = "1.0.${api.executionNumber()}",
-            // automatically update deployment status based on a status of a job
-            syncWithAutomationJob = true
-        )
-    }
-}
+   
 }
 
