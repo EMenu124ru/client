@@ -1,5 +1,4 @@
 job("Run npm test and publish") {
-    host("Docker images") {
     
     env["HUB_USER"] = Params("dockerhub_user")
     env["HUB_TOKEN"] = Secrets("dockerhub_token")
@@ -43,7 +42,6 @@ job("Run npm test and publish") {
                 +"$spaceRepo:1.0.${"$"}JB_SPACE_EXECUTION_NUMBER"
                 +"$spaceRepo:latest"
             }
-        }
     }
 }
 
