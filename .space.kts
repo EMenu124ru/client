@@ -35,7 +35,7 @@ job("Run npm test and publish") {
                 // Docker context, by default, project root
                 context = "."
                 file = "Dockerfile"
-                labels["repo"] = "frontend-client"
+                labels["repo"] = "frontend"
 
                 val spaceRepo = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
                 tags {
