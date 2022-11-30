@@ -21,7 +21,7 @@ job("Run npm test and publish") {
 
     env["HUB_USER"] = Params("dockerhub_user")
     env["HUB_TOKEN"] = Secrets("dockerhub_token")
-    env["SSH_PASS"] = Secrets('ssh_password')
+    env["SSH_PASS"] = Secrets("ssh_password")
     env["SSH_IP"] = Params("ssh_ip")
     env["SPACE_REPO"] = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
 
