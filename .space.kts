@@ -42,15 +42,17 @@ job("Run npm test and publish") {
       }
     }
 
-    shellScript {
-      content = """
-                    sudo apt-get install sshpass
-                    sshpass -p '${"$"}SSH_PASS' ssh -tt root@${"$"}SSH_IP
-                    ls
-                    ./build-client-frontend.sh
-                """
+    container(displayName = "Run myscript", image = "ubuntu") {
+        shellScript {
+          content = """
+                        sudo apt-get install sshpass
+                        sshpass -p '${"$"}SSH_PASS' ssh -tt root@${"$"}SSH_IP
+                        ls
+                        ./build-client-frontend.sh
+                    """
+        }
     }
-
+   
   }
 }
 
