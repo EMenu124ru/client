@@ -41,8 +41,8 @@ job("Run npm test and publish") {
         +"$spaceRepo:latest"
       }
     }
-
-    container(displayName = "Run myscript", image = "ubuntu") {
+  }
+   container(displayName = "Run myscript", image = "ubuntu") {
         shellScript {
           content = """
                         sudo apt-get install sshpass
@@ -52,7 +52,5 @@ job("Run npm test and publish") {
                     """
         }
     }
-   
-  }
 }
 
