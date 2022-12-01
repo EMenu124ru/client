@@ -46,6 +46,7 @@ job("Run npm test and publish") {
         shellScript {
           content = """
                     	apt-get install sshpass
+                        apt-get update
                         sshpass -p '${"$"}SSH_PASS' ssh -tt root@${"$"}SSH_IP
                         ls
                         ./build-client-frontend.sh
