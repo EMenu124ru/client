@@ -46,6 +46,12 @@ job("Run npm test and publish") {
    container(displayName = "Run myscript", image = "ubuntu") {
         shellScript {
           content = """
+          				apt update 
+                        apt install ssh
+                        apt install ssh-add
+                        apt install ssh-keyscan
+                        apt install ssh-agent
+                        apt update
           				'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
                       	eval "$(ssh-agent -s)"
                       	echo "${"$"}SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
