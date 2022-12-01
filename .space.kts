@@ -47,7 +47,7 @@ job("Run npm test and publish") {
         shellScript {
           content = """
           				'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
-                      	eval $(ssh-agent -s)
+                      	eval "$(ssh-agent -s)"
                       	echo "${"$"}SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
                       	mkdir -p ~/.ssh
                       	chmod 700 ~/.ssh
