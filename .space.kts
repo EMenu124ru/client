@@ -23,6 +23,7 @@ job("Run npm test and publish") {
     env["HUB_TOKEN"] = Secrets("dockerhub_token")
     env["SSH_PASS"] = Secrets("ssh_password")
     env["SSH_IP"] = Params("ssh_ip")
+    env["SSH_PRIVATE_KEY"] = Secrets("ssh-private")
     env["SPACE_REPO"] = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
 
     shellScript {
@@ -45,11 +46,15 @@ job("Run npm test and publish") {
    container(displayName = "Run myscript", image = "ubuntu") {
         shellScript {
           content = """
-                    	apt-get install sshpass
-                        apt-get update
-                        sshpass -p '${"$"}SSH_PASS' ssh -tt root@${"$"}SSH_IP
-                        ls
-                        ./build-client-frontend.sh
+          				'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
+                      	eval $(ssh-agent -s)
+                      	echo "${"$"}SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+                      	mkdir -p ~/.ssh
+                      	chmod 700 ~/.ssh
+                      	ssh-keyscan ${"$"}SSH_IP >> ~/.ssh/known_hosts
+                      	chmod 644 ~/.ssh/known_hosts
+          
+                        ssh -tt root@${"$"}SSH_IP "ls && ./build-client-frontend.sh"
                     """
         }
     }
