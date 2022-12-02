@@ -49,15 +49,8 @@ job("Run npm test and publish") {
        env["SPACE_REPO"] = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
         shellScript {
           content = """
-          				command -v ssh-agent >/dev/null || ( apk add --update openssh )
-                      	eval "$(ssh-agent -s)"
-                      	echo "${"$"}SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-                      	mkdir -p ~/.ssh
-                      	chmod 700 ~/.ssh
-                      	ssh-keyscan ${"$"}SSH_IP >> ~/.ssh/known_hosts
-                      	chmod 644 ~/.ssh/known_hosts
-          
-                        ssh -tt root@${"$"}SSH_IP "ls && ./build-client-frontend.sh"
+          				sshpass -p "YOUR_PASSWORD" ssh -o StrictHostKeyChecking=no root@${"$"}SSH_IP
+                        ls
                     """
         }
     }
