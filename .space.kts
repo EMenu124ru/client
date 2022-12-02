@@ -49,6 +49,9 @@ job("Run npm test and publish") {
        env["SPACE_REPO"] = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
         shellScript {
           content = """
+          				apt update
+          				apt install -y sshpass
+                        apt update
           				sshpass -p "YOUR_PASSWORD" ssh -o StrictHostKeyChecking=no root@${"$"}SSH_IP
                         ls
                     """
