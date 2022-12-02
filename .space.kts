@@ -46,7 +46,7 @@ job("Run npm test and publish") {
    container(displayName = "Run myscript", image = "rastasheep/ubuntu-sshd") {
         shellScript {
           content = """
-          				'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
+          				command -v ssh-agent >/dev/null || ( apk add --update openssh )
                       	eval "$(ssh-agent -s)"
                       	echo "${"$"}SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
                       	mkdir -p ~/.ssh
