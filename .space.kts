@@ -47,10 +47,10 @@ job("Run npm test and publish") {
         shellScript {
           content = """
           				apt update 
-                        apt install ssh
-                        apt install ssh-add
-                        apt install ssh-keyscan
-                        apt install ssh-agent
+                        apt install -y ssh
+                        apt install -y ssh-add
+                        apt install -y ssh-keyscan
+                        apt install -y ssh-agent
                         apt update
           				'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
                       	eval "$(ssh-agent -s)"
