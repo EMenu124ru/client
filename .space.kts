@@ -44,6 +44,7 @@ job("Run npm test and publish") {
     //}
   }
    container(displayName = "Run myscript", image = "rastasheep/ubuntu-sshd") {
+       env["SSH_IP"] = Params("ssh_ip")
        env["SSH_PRIVATE_KEY"] = Secrets("ssh-private")
        env["SPACE_REPO"] = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
         shellScript {
