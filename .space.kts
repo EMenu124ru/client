@@ -52,7 +52,7 @@ job("Run npm test and publish") {
           				apt update
           				apt install -y sshpass
                         apt update
-                        echo -e ${"$"}SSH_PASS
+                        echo ${"$"}SSH_PASS
           				sshpass -p "${"$"}SSH_PASS" ssh -o StrictHostKeyChecking=no root@${"$"}SSH_IP
                         ls
                     """
