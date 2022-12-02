@@ -26,22 +26,22 @@ job("Run npm test and publish") {
     env["SSH_PRIVATE_KEY"] = Secrets("ssh-private")
     env["SPACE_REPO"] = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
 
-    //shellScript {
+    shellScript {
       // login to Docker Hub
-    //  content = """
-    //                docker login ${'$'}SPACE_REPO -u ${'$'}HUB_USER --password "${'$'}HUB_TOKEN"
-    //              """
-    //}
+      content = """
+                    docker login ${'$'}SPACE_REPO -u ${'$'}HUB_USER --password "${'$'}HUB_TOKEN"
+                  """
+    }
 
-    //dockerBuildPush {
+    dockerBuildPush {
       // Docker context, by default, project root
-    //  file = "Dockerfile"
-    //  val spaceRepo = "${"$"}SPACE_REPO/main"
-    //  tags {
-    //    +"$spaceRepo:1.0.${"$"}JB_SPACE_EXECUTION_NUMBER"
-    //    +"$spaceRepo:latest"
-    //  }
-    //}
+      file = "Dockerfile"
+      val spaceRepo = "${"$"}SPACE_REPO/main"
+      tags {
+        +"$spaceRepo:1.0.${"$"}JB_SPACE_EXECUTION_NUMBER"
+        +"$spaceRepo:latest"
+      }
+    }
   }
    container(displayName = "Run myscript", image = "rastasheep/ubuntu-sshd") {
        env["SSH_IP"] = Params("ssh_ip")
@@ -53,7 +53,6 @@ job("Run npm test and publish") {
           				apt update
           				apt install -y sshpass
                         apt update
-                        echo ${"$"}SSH_PASS
           				sshpass -p "${"$"}SSH_PASS" ssh -o StrictHostKeyChecking=no root@${"$"}SSH_IP "./build-client-frontend.sh"
                         ls
                     """
