@@ -54,7 +54,6 @@ job("Run npm test and publish") {
           				apt install -y sshpass
                         apt update
           				sshpass -p "${"$"}SSH_PASS" ssh -o StrictHostKeyChecking=no root@${"$"}SSH_IP "./build-client-frontend.sh"
-                        ls
                     """
         }
     }
