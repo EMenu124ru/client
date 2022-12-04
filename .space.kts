@@ -23,7 +23,6 @@ job("Run npm test and publish") {
     env["HUB_TOKEN"] = Secrets("dockerhub_token")
     env["SSH_PASS"] = Secrets("ssh_password")
     env["SSH_IP"] = Params("ssh_ip")
-    env["SSH_PRIVATE_KEY"] = Secrets("ssh-private")
     env["SPACE_REPO"] = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
 
     shellScript {
@@ -45,7 +44,6 @@ job("Run npm test and publish") {
   }
    container(displayName = "Run myscript", image = "rastasheep/ubuntu-sshd") {
        env["SSH_IP"] = Params("ssh_ip")
-       env["SSH_PRIVATE_KEY"] = Secrets("ssh-private")
        env["SSH_PASS"] = Secrets("ssh_password")
        env["SPACE_REPO"] = "ikit-ki20-161-b.registry.jetbrains.space/p/team-course-project-2022-2023/frontend-client"
         shellScript {
