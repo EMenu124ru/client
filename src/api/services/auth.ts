@@ -34,13 +34,28 @@ export namespace AuthService {
    */
   export function register({ phoneNumber, password, firstName, secondName }: RegisterArguments): Promise<AuthResponse> {
     return $api.post<AuthDto>(
-      'clients/register',
+      'clients/',
       {
         phone_number: phoneNumber,
         password,
         first_name: firstName,
         last_name: secondName,
       },
+    )
+      .then(response => {
+        const { accessToken, refreshToken } = AuthMapper.fromDto(response.data);
+
+        return { accessToken, refreshToken };
+      });
+  }
+
+  /**
+   * TODO finish logout method.
+   * Logout from system.
+   */
+  export function logout(): void {
+    $api.post(
+      'clients/logout',
     )
       .then(response => AuthMapper.fromDto(response.data));
   }

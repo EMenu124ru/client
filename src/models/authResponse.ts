@@ -4,8 +4,8 @@
 export interface AuthResponse {
 
   /** Access token. */
-  readonly accessToken: 'string';
+  readonly accessToken: string;
 
   /** Refresh token. */
-  readonly refreshToken: 'string';
+  readonly refreshToken: string;
 }

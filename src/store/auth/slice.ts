@@ -14,11 +14,9 @@ export const authSlice = createSlice({
 
       state.error = undefined;
     })
-    .addCase(login.fulfilled, (state, action) => {
+    .addCase(login.fulfilled, state => {
       state.isLoading = false;
       state.isAuth = true;
-      localStorage.setItem('token', action.payload.accessToken);
-      localStorage.setItem('refreshToken', action.payload.refreshToken);
 
       state.error = undefined;
     })
