@@ -27,8 +27,6 @@
   },
   "include": [
     "src",
-    ".eslintrc.js",
-    ".stylelintrc.js",
   ],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["**/node_modules"]

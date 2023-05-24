@@ -1,0 +1,18 @@
+.timePicker {
+  border-radius: 20px;
+  background: #FAEECD;
+
+  .MuiInput-underline {
+    border-bottom: none;
+  }
+
+  input {
+    color: black;
+  }
+
+  input + div button {
+    margin-right: 0;
+  }
+
+  width: 100%;
+}

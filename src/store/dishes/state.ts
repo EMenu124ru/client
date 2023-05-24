@@ -1,4 +1,3 @@
-/* eslint-disable jsdoc/require-jsdoc */
 import { Dish } from '@models/dish';
 import { createEntityAdapter } from '@reduxjs/toolkit';
 

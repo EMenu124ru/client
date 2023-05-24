@@ -7,7 +7,6 @@ export const authSlice = createSlice({
   name: 'dishes',
   initialState,
   reducers: {},
-  // eslint-disable-next-line jsdoc/require-jsdoc
   extraReducers: builder => builder
     .addCase(getAllDishes.pending, state => {
       state.isLoading = true;

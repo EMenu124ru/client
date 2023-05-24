@@ -7,7 +7,6 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {},
-  // eslint-disable-next-line jsdoc/require-jsdoc
   extraReducers: builder => builder
     .addCase(login.pending, state => {
       state.isLoading = true;
@@ -24,7 +23,6 @@ export const authSlice = createSlice({
       state.error = action.error.message;
       state.isLoading = false;
     })
-
     .addCase(register.pending, state => {
       state.isLoading = true;
 
@@ -33,8 +31,6 @@ export const authSlice = createSlice({
     .addCase(register.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isAuth = true;
-      localStorage.setItem('token', action.payload.accessToken);
-      localStorage.setItem('refreshToken', action.payload.refreshToken);
 
       state.error = undefined;
     })

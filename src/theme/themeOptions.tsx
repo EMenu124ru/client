@@ -48,6 +48,7 @@ export const themeOptions = createTheme({
         variant: 'standard',
         inputProps: {
           style: {
+            boxSizing: 'border-box',
             paddingTop: '0.75em',
             paddingLeft: '0.75em',
           },

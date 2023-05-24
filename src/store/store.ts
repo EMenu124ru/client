@@ -8,11 +8,7 @@ export const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
   },
-  // eslint-disable-next-line jsdoc/require-jsdoc
   middleware: getDefaultMiddleware => getDefaultMiddleware({
-    // We need to disable this check to allow ES6 classes in Redux.
-    // You can find more info about this middleware in docs:
-    // https://redux-toolkit.js.org/api/serializabilityMiddleware
     serializableCheck: false,
   }),
 });

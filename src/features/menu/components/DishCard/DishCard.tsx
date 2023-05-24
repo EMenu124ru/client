@@ -35,7 +35,7 @@ const DishCardComponent: FC<DishCardProps> = ({
   title,
   weight,
   price,
-  quantity = undefined,
+  quantity ,
 }) => {
   const [anchor, setAnchor] = useState<HTMLButtonElement | null>(null);
 

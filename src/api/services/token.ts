@@ -5,9 +5,12 @@ const TOKEN_KEY = 'TOKENS';
 export namespace TokenService {
 
   /** Get token from local storage. */
-  export function getTokens(): Partial<AuthResponse> {
+  export function getTokens(): AuthResponse | null {
     const accessToken = StorageService.get<string>('access_token') ?? undefined;
     const refreshToken = StorageService.get<string>('refresh_token') ?? undefined;
+    if (!accessToken || !refreshToken) {
+      return null;
+    }
     return { accessToken, refreshToken };
   }
 

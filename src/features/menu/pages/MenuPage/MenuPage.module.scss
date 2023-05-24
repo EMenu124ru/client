@@ -3,25 +3,29 @@ body {
 }
 
 .menuPage {
-  padding-top: 90px;
+  padding: 100px 10px 0 10px;
   min-width: 900px;
   height: 100%;
+  display: flex;
 
-  .mainContent {
-    padding: 10px 10px 0 10px;
+  .dishesWrapper {
+    margin-left: 0;
+  }
 
-    .bookingTableFormWrapper {
-      position: sticky;
-      align-items: end;
-    }
+  .bookingTableFormWrapper {
 
-    .foodCategories, .bookingTableFormWrapper {
-      div {
-        top: 10vh;
-        position: -webkit-sticky;
-        position: sticky;
-      }
-    }
+
+    padding-left: 0;
+    min-width: 400px;
+    margin-left: 10px;
 
   }
+
+  .foodCategories, .bookingTableFormWrapper {
+    & > div {
+      position: sticky;
+      top: 100px;
+    }
+  }
+
 }

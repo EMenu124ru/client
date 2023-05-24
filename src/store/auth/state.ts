@@ -1,3 +1,5 @@
+import {TokenService} from "@api/services/token";
+
 /**
  * Auth state.
  */
@@ -14,6 +16,6 @@ export interface AuthState {
 }
 
 export const initialState: AuthState = {
-  isAuth: false,
+  isAuth: TokenService.hasToken(),
   isLoading: false,
 };
