@@ -5,7 +5,6 @@ body {
 .menuPage {
   padding: 100px 10px 0 10px;
   min-width: 900px;
-  height: 100%;
   display: flex;
 
   .dishesWrapper {
@@ -13,19 +12,11 @@ body {
   }
 
   .bookingTableFormWrapper {
-
-
     padding-left: 0;
     min-width: 400px;
     margin-left: 10px;
-
-  }
-
-  .foodCategories, .bookingTableFormWrapper {
-    & > div {
-      position: sticky;
-      top: 100px;
-    }
+    position: sticky;
+    top: 0px;
   }
 
 }

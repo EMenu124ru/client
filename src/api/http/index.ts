@@ -3,11 +3,11 @@ import { AuthResponse } from '@models/authResponse';
 import { AuthDto } from '@api/dtos/authDto';
 import { AuthMapper } from '@api/mappers/authMapper';
 
-export const API_URL = process.env.REACT_APP_BASE_URL;
+export const API_URL = import.meta.env.VITE_APP_BASE_URL;
 
 const $api = axios.create({
   // withCredentials: true,
-  baseURL: API_URL,
+  baseURL: `${API_URL}/api/v1`,
 });
 
 /**

@@ -1,4 +1,4 @@
-import {TokenService} from "@api/services/token";
+import { TokenService } from '@api/services/token';
 
 /**
  * Auth state.

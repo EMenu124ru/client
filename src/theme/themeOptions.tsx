@@ -6,7 +6,7 @@ declare module '@mui/material/Button' {
     /** Auth main button theme. */
     'authMain': true;
 
-    /** Dish card button theme. */
+    /** Image card button theme. */
     'cardDishButton': true;
   }
 }

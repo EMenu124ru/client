@@ -1,62 +1,66 @@
 import React, { FC, memo, useState } from 'react';
-import image from '@assets/images/dish-image.png';
-import { DishCardButton } from '@features/menu/components/DishCard/DishCardButton';
+import { DishCardButton } from '@features/menu/components/DishCardButton';
 import { IconButton, Popover } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { Dish } from '@models/dish';
+import { API_URL } from '@api/http';
 import styles from './DishCard.module.scss';
 
 interface DishCardProps {
 
-  /** Number of servings. */
+  /** Dish. */
+  readonly dish: Dish;
+
+  /** Quantity in basket. */
   readonly quantity?: number;
 
-  /** Information dish. */
-  readonly description: string;
-
-  /** Title. */
-  readonly title: string;
-
-  /** Weight in grams. */
-  readonly weight: number;
-
-  /** Composition of dish. */
-  readonly composition: string;
-
-  /** Price of dish. */
-  readonly price: number;
 }
 
 /**
  * Card of dish with its info.
+ * @param props
  */
-const DishCardComponent: FC<DishCardProps> = ({
-  composition,
-  description,
-  title,
-  weight,
-  price,
-  quantity ,
-}) => {
-  const [anchor, setAnchor] = useState<HTMLButtonElement | null>(null);
+const DishCardComponent: FC<DishCardProps> = (props: DishCardProps) => {
+  const {
+    dish,
+    quantity,
+  } = props;
+
+  const {
+    description,
+    title,
+    weight,
+    price,
+    compound,
+    images,
+  } = dish;
+
+  const [menuAnchor, setMenuAnchor] = useState<HTMLButtonElement | null>(null);
 
   /**
    * Handler to close popover info.
    * @param event Event.
    */
   const handleOpenDishInfo = (event: React.MouseEvent<HTMLButtonElement>): void => {
-    setAnchor(event.currentTarget);
+    setMenuAnchor(event.currentTarget);
   };
 
   /**
    * Handler to close popover dish info.
    */
-  const handleCloseDishInfo = (): void => {
-    setAnchor(null);
+  const handleCloseDishInfo = () => {
+    setMenuAnchor(null);
   };
+
   return (
     <div className={styles.cardDish}>
       <div>
-        <img src={image} alt="No alternative :c" className={styles.image} />
+        <img
+          src={images.length ?
+            `${API_URL}${images[0].image}` : undefined}
+          alt="No alternative :c"
+          className={styles.image}
+        />
       </div>
       <div className={styles.title}>{title}</div>
       <div className={styles.description}>{description}</div>
@@ -67,8 +71,8 @@ const DishCardComponent: FC<DishCardProps> = ({
         </IconButton>
         <Popover
           className={styles.dishPopover}
-          open={Boolean(anchor)}
-          anchorEl={anchor}
+          open={Boolean(menuAnchor)}
+          anchorEl={menuAnchor}
           onClose={handleCloseDishInfo}
           anchorOrigin={{
             vertical: 'bottom',
@@ -78,21 +82,16 @@ const DishCardComponent: FC<DishCardProps> = ({
           <div className={styles.dishPopoverText}>
             <div>
               <span className={styles.dishInfoType}>Состав: </span>
-              {composition}
+              {compound}
             </div>
             <div>
               <span className={styles.dishInfoType}>Масса: </span>
               {weight}
             </div>
-
-            {/* <div>*/}
-            {/*  <span className={styles.dishInfoType}>БЖУ: </span>*/}
-            {/*  {composition}*/}
-            {/* </div>*/}
           </div>
         </Popover>
       </div>
-      <DishCardButton quantity={quantity} />
+      <DishCardButton dish={dish} quantity={quantity} />
     </div>
   );
 };

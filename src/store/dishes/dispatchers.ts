@@ -2,12 +2,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Dish } from '@models/dish';
 import { DishService } from '@api/services/dish';
 
-export const getAllDishes = createAsyncThunk<Dish[]>(
-  'dish/getAll',
+export const getDishes = createAsyncThunk<Dish[]>(
+  'dishes/get',
   () => DishService.getAll(),
 );
 
-export const getOneDish = createAsyncThunk<Dish, string>(
-  'dish/getOne',
-  id => DishService.getOne(id),
+export const getDish = createAsyncThunk<Dish, string>(
+  'dish/get',
+  id => DishService.get(id),
 );

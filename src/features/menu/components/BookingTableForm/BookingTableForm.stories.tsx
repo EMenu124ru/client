@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { BookingTableForm } from '@features/menu/components/BookingTableForm';
 
 export default {
-  title: 'Menu/BookingTableForm',
+  title: 'Menu/ClientOrderCard',
   component: BookingTableForm,
 } as ComponentMeta<typeof BookingTableForm>;
 

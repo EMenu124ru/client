@@ -1,9 +1,9 @@
-import React, {FC, memo} from 'react';
-import {Button, MenuItem, Select, TextField} from '@mui/material';
-import styles from './BookingTableForm.module.scss';
+import React, { FC, memo } from 'react';
+import { Button, MenuItem, Select, TextField } from '@mui/material';
 import 'moment/locale/de';
-import {LocalizedDatePicker} from "@features/core/components/LocalizedDatePicker/LocalizedDatePicker";
-import {LocalizedTimePicker} from "@features/core/components/LocalizedTimePicker/LocalizedTimePicker";
+import { LocalizedDatePicker } from '@shared/LocalizedDatePicker/LocalizedDatePicker';
+import { LocalizedTimePicker } from '@shared/LocalizedTimePicker/LocalizedTimePicker';
+import styles from './BookingTableForm.module.scss';
 
 /**
  * Booking table.
@@ -15,10 +15,10 @@ const BookingTableFormComponent: FC = () => (
     </div>
     <div className={styles.dateTimePicker}>
       <div className={styles.picker}>
-        <LocalizedDatePicker/>
+        <LocalizedDatePicker />
       </div>
       <div className={styles.picker}>
-      <LocalizedTimePicker/>
+        <LocalizedTimePicker />
       </div>
     </div>
     <div className={styles.availableTables}>
@@ -29,7 +29,7 @@ const BookingTableFormComponent: FC = () => (
       <MenuItem className={styles.option} value="wall">Столик у стены</MenuItem>
       <MenuItem className={styles.option} value="toilet">Столик у туалета (иногда воняет )</MenuItem>
     </Select>
-    <TextField className={styles.commentInput} placeholder="Комментарии к брони" variant="standard"/>
+    <TextField className={styles.commentInput} placeholder="Комментарии к брони" variant="standard" />
     <Button className={styles.submitButton} variant="cardDishButton">
       Забронировать
     </Button>

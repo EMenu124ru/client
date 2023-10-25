@@ -6,7 +6,7 @@ import { AuthDto } from '@api/dtos/authDto';
 import { AuthMapper } from '@api/mappers/authMapper';
 import { RegisterArguments } from '@models/registerArguments';
 import { LoginArguments } from '@models/loginArguments';
-import {TokenService} from "@api/services/token";
+import { TokenService } from '@api/services/token';
 
 export namespace AuthService {
 
@@ -25,7 +25,7 @@ export namespace AuthService {
     )
       .then(response => {
         const { accessToken, refreshToken } = AuthMapper.fromDto(response.data);
-        TokenService.saveToken({accessToken, refreshToken})
+        TokenService.saveToken({ accessToken, refreshToken });
         return { accessToken, refreshToken };
       });
   }
@@ -49,7 +49,7 @@ export namespace AuthService {
     )
       .then(response => {
         const { accessToken, refreshToken } = AuthMapper.fromDto(response.data);
-        TokenService.saveToken({accessToken, refreshToken})
+        TokenService.saveToken({ accessToken, refreshToken });
         return { accessToken, refreshToken };
       });
   }

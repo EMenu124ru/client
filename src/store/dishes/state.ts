@@ -2,7 +2,7 @@ import { Dish } from '@models/dish';
 import { createEntityAdapter } from '@reduxjs/toolkit';
 
 /**
- * Dish state.
+ * Image state.
  */
 export interface DishState {
 
@@ -14,10 +14,15 @@ export interface DishState {
 }
 
 export const dishAdapter = createEntityAdapter<Dish>({
-  selectId: dish => dish.title,
+  /**
+   * Select by dish id.
+   * @param dish Dish.
+   */
+  selectId: dish => dish.id,
+
   sortComparer: (a, b) => a.title.localeCompare(b.title),
 });
 
-export const initialState: DishState = dishAdapter.getInitialState<DishState>({
+export const initialState: DishState = {
   isLoading: false,
-});
+};

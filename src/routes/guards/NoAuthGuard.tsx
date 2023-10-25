@@ -13,7 +13,6 @@ export const NoAuthGuard: FC = () => {
   const isAuthorized = useAppSelector(selectIsAuth);
 
   if (isAuthorized && hasToken) {
-    console.log('here')
     const redirect: To = {
       pathname: 'menu',
     };

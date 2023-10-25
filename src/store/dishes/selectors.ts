@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
+import { dishAdapter } from '@store/dishes/state';
 import { RootState } from '../store';
 
 export const selectIsAuthLoading = createSelector(
@@ -11,7 +12,9 @@ export const selectIsAuth = createSelector(
   isAuth => isAuth,
 );
 
-export const selectAuthErrors = createSelector(
-  (state: RootState) => state.auth.error,
+export const selectDishesErrors = createSelector(
+  (state: RootState) => state.dishes.error,
   error => error,
 );
+
+export const { selectAll: selectAllDishes } = dishAdapter.getSelectors<RootState>(state => state.dishes);

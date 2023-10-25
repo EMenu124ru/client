@@ -1,4 +1,4 @@
-import { FC, memo, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import AuthLogo from '@assets/images/auth-logo.png';
 import styles from './LoginBackgroundLayout.module.scss';
 
@@ -14,4 +14,4 @@ const LoginBackgroundLayoutComponent: FC<PropsWithChildren> = ({ children }) => 
   </div>
 );
 
-export const LoginBackgroundLayout = memo(LoginBackgroundLayoutComponent);
+export const LoginBackgroundLayout = LoginBackgroundLayoutComponent;

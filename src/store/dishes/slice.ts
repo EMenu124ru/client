@@ -1,27 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 import { dishAdapter, initialState } from './state';
-import { getAllDishes } from './dispatchers';
+import { getDishes } from './dispatchers';
 
-export const authSlice = createSlice({
+export const dishSlice = createSlice({
   name: 'dishes',
-  initialState,
+  initialState: {
+    ...dishAdapter.getInitialState(),
+    ...initialState,
+  },
   reducers: {},
   extraReducers: builder => builder
-    .addCase(getAllDishes.pending, state => {
+    .addCase(getDishes.pending, state => {
       state.isLoading = true;
-
       state.error = undefined;
     })
-    .addCase(getAllDishes.fulfilled, (state, action) => {
+    .addCase(getDishes.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = undefined;
-      dishAdapter.setAll(dishAdapter.getInitialState(), action.payload);
+      dishAdapter.addMany(state, action.payload);
     })
-    .addCase(getAllDishes.rejected, (state, action) => {
+    .addCase(getDishes.rejected, (state, action) => {
       state.error = action.error.message;
       state.isLoading = false;
-    })
-  ,
-
+    }),
 });

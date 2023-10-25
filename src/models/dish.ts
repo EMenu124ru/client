@@ -1,29 +1,35 @@
+import { DishImage } from '@models/dishImage';
+import { DishCategory } from '@models/dishCategory';
+
 /**
- * Dish.
+ * Image.
  */
 export interface Dish {
 
-  /** Identification number of dish category. */
-  readonly 'categoryId': number;
+  /** Identification number. */
+  readonly id: number;
+
+  /** Dish category. */
+  readonly 'category': DishCategory;
 
   /** Title of dish. */
-  readonly 'title': 'string';
+  readonly 'title': string;
 
   /** Description for dish. */
-  readonly 'description': 'string';
+  readonly 'description': string;
 
   /** Short description. */
-  readonly 'shortDescription': 'string';
+  readonly 'shortDescription': string;
 
-  /** Dish price. */
+  /** Price. */
   readonly 'price': number;
 
-  /** Dish ingredients. */
-  readonly 'compound': 'string';
+  /** Ingredients. */
+  readonly 'compound': string;
 
   /** Weight of dish. */
   readonly 'weight': number;
 
-  /** Dish images. */
-  readonly 'images': readonly string[];
+  /** Image images. */
+  readonly 'images': DishImage[];
 }

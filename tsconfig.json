@@ -15,6 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+
     "baseUrl": "src",
     "paths": {
       "@assets/*": ["assets/*"],
@@ -22,12 +23,15 @@
       "@api/*": ["api/*"],
       "@models/*": ["models/*"],
       "@lib/*": ["lib/*"],
-      "@store/*": ["store/*"]
+      "@store/*": ["store/*"],
+      "@shared/*": ["shared/*"]
     }
   },
   "include": [
     "src",
+    ".eslintrc.js",
+    ".stylelintrc.js",
+    "vite.config.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }],
-  "exclude": ["**/node_modules"]
 }

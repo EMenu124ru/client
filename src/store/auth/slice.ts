@@ -28,7 +28,7 @@ export const authSlice = createSlice({
 
       state.error = undefined;
     })
-    .addCase(register.fulfilled, (state, action) => {
+    .addCase(register.fulfilled, state => {
       state.isLoading = false;
       state.isAuth = true;
 

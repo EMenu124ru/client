@@ -1,10 +1,16 @@
+import { DishImageDto } from '@api/dtos/dishImageDto';
+import { CategoryDto } from '@api/dtos/categoryDto';
+
 /**
- * Dish DTO.
+ * Image DTO.
  */
 export interface DishDto {
 
+  /** Identification number. */
+  readonly 'id': number;
+
   /** Identification number of dish category. */
-  readonly 'category': number;
+  readonly 'category': CategoryDto;
 
   /** Title of dish. */
   readonly 'name': 'string';
@@ -15,15 +21,15 @@ export interface DishDto {
   /** Short description. */
   readonly 'short_description': 'string';
 
-  /** Dish price. */
+  /** Image price. */
   readonly 'price': number;
 
-  /** Dish ingredients. */
+  /** Image ingredients. */
   readonly 'compound': 'string';
 
   /** Weight of dish. */
   readonly 'weight': number;
 
-  /** Dish images. */
-  readonly 'images': readonly string[];
+  /** Image images. */
+  readonly 'images': readonly DishImageDto[];
 }
