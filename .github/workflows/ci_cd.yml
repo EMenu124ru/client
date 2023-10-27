@@ -37,7 +37,7 @@ jobs:
           password: ${{ secrets.PAT }}
       - name: Build and Publish
         run: |
-          docker build --tag ${{ env.REGISTRY }}/${{ env.CLIENT_IMAGE_NAME }}
+          docker build . --tag ${{ env.REGISTRY }}/${{ env.CLIENT_IMAGE_NAME }}
           docker push ${{ env.REGISTRY }}/${{ env.CLIENT_IMAGE_NAME }}
 
   deploy:
