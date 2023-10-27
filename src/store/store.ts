@@ -2,18 +2,17 @@ import { configureStore } from '@reduxjs/toolkit';
 import {
   TypedUseSelectorHook, useDispatch, useSelector,
 } from 'react-redux';
-
-import { postsSlice } from './post/slice';
+import { basketSlice } from '@store/basket/slice';
+import { dishSlice } from '@store/dishes/slice';
+import { authSlice } from './auth/slice';
 
 export const store = configureStore({
   reducer: {
-    posts: postsSlice.reducer,
+    auth: authSlice.reducer,
+    basket: basketSlice.reducer,
+    dishes: dishSlice.reducer,
   },
-  // eslint-disable-next-line jsdoc/require-jsdoc
   middleware: getDefaultMiddleware => getDefaultMiddleware({
-    // We need to disable this check to allow ES6 classes in Redux.
-    // You can find more info about this middleware in docs:
-    // https://redux-toolkit.js.org/api/serializabilityMiddleware
     serializableCheck: false,
   }),
 });

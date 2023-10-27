@@ -4,9 +4,23 @@
   align-items: center;
   padding: 0;
   gap: 16px;
+  width: 100%;
   min-width: 300px;
 
+  .dateTimePicker {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+
+    .picker {
+      width: 49%;
+    }
+
+  }
+
   .submitButton {
+    width: 100%;
     color: white;
   }
 
@@ -18,7 +32,7 @@
     justify-content: center;
     align-items: center;
     background-color: #FAEECD;
-    width: 80%;
+    width: 100%;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
 
@@ -50,14 +64,14 @@
     align-items: center;
     padding: 20px 31px;
     gap: 10px;
-    width: 80%;
     background: #FAEECD;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
+    width: 100%;
   }
 
   .commentInput {
-    width: 80%;
+    width: 100%;
     border-radius: 20px;
     background: #FAEECD;
     input {

@@ -5,8 +5,17 @@ module.exports = {
     project: ['tsconfig.json'],
   },
   plugins: ['jsdoc'],
-  extends: ['airbnb', 'airbnb-typescript', 'airbnb/hooks', 'plugin:@typescript-eslint/recommended', 'plugin:storybook/recommended'],
+  extends: [
+    'airbnb',
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/recommended',
+  ],
   rules: {
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    'no-plusplus': 'off',
     'react/require-default-props': 'off',
     'react/jsx-filename-extension': [
       'error', {
@@ -95,11 +104,7 @@ module.exports = {
     ],
     '@typescript-eslint/type-annotation-spacing': 'error',
     '@typescript-eslint/unified-signatures': 'error',
-    '@typescript-eslint/explicit-function-return-type': [
-      'error', {
-        allowExpressions: true,
-      },
-    ],
+    '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/comma-dangle': [
       'error', {
         arrays: 'always-multiline',
@@ -160,9 +165,6 @@ module.exports = {
         checkGetters: true,
         checkSetters: true,
         enableFixer: false,
-        require: {
-          ArrowFunctionExpression: true,
-        },
       },
     ],
     'jsdoc/require-description-complete-sentence': [
@@ -170,13 +172,9 @@ module.exports = {
         tags: ['see', 'copyright'],
       },
     ],
-    'jsdoc/require-param': [
-      'error', {
-        checkDestructuredRoots: false,
-      },
-    ],
-    'jsdoc/require-param-name': 'error',
-    'jsdoc/require-param-description': 'error',
+    'jsdoc/require-param': 'off',
+    'jsdoc/require-param-name': 'off',
+    'jsdoc/require-param-description': 'off',
     'jsdoc/no-types': 'error',
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
@@ -420,7 +418,15 @@ module.exports = {
       },
     },
     {
-      files: ['*.stories.tsx'],
+      files: ['**/store/**'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+        'lines-around-comment': 'off',
+        'jsdoc/require-jsdoc': 'off',
+      },
+    },
+    {
+      files: ['slice.ts'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
         'lines-around-comment': 'off',
@@ -455,6 +461,12 @@ module.exports = {
             message: 'Missing \'readonly\' type modifier for array.',
           },
         ],
+      },
+    },
+    {
+      files: ['**/store.ts', '**/state.ts'],
+      rules: {
+        'jsdoc/require-jsdoc': 'off',
       },
     },
   ],

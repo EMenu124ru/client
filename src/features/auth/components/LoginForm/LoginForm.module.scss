@@ -1,15 +1,15 @@
 @import "src/theme";
 
-.inputTextLogin {
-  @extend %auth_input_text;
-}
-
 .buttonEnter {
   color: $cream-color-input;
 }
 
 .boxButtons {
   @extend %auth_box_buttons;
+
+  .inputTextLogin {
+    @extend %auth_input_text;
+  }
 }
 
 .textLogin {
