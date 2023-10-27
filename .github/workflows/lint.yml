@@ -13,7 +13,7 @@ jobs:
           node-version: '18'
           cache: 'npm'
       - name: Install
-        run: yarn
+        run: yarn install --frozen-lockfile
       - name: esint
         run: yarn lint
       - name: type-check
