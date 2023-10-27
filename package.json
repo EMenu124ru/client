@@ -23,8 +23,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn lint:fix --cache",
-      "yarn type-check"
+      "yarn lint:fix --cache"
     ]
   },
   "dependencies": {
