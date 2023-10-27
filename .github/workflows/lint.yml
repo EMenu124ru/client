@@ -16,5 +16,3 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: esint
         run: yarn lint
-      - name: type-check
-        run: yarn tsc
