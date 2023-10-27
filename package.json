@@ -14,7 +14,7 @@
     "pre-commit": "lint-staged",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "type-check": "tsc-files"
+    "type-check": "tsc-files --noEmit src/api/http/index.ts"
   },
   "husky": {
     "hooks": {
@@ -23,7 +23,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn lint:fix --cache"
+      "yarn lint:fix --cache",
+      "yarn type-check "
     ]
   },
   "dependencies": {
