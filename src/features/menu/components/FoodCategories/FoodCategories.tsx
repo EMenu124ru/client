@@ -1,4 +1,5 @@
 import React, { FC, memo } from 'react';
+import { Button } from '@mui/material';
 import styles from './FoodCategories.module.scss';
 
 /**
@@ -6,30 +7,30 @@ import styles from './FoodCategories.module.scss';
  */
 const FoodCategoriesComponent: FC = () => (
   <div className={styles.foodCategories}>
-    <div className={styles.foodCategory}>
+    <Button variant="text" className={styles.foodCategory}>
       Пицца
-    </div>
-    <div className={styles.foodCategory}>
+    </Button>
+    <Button className={styles.foodCategory}>
       Салаты
-    </div>
-    <div className={styles.foodCategory}>
+    </Button>
+    <Button className={styles.foodCategory}>
       Супы
-    </div>
-    <div className={styles.foodCategory}>
+    </Button>
+    <Button className={styles.foodCategory}>
       Паста
-    </div>
-    <div className={styles.foodCategory}>
+    </Button>
+    <Button className={styles.foodCategory}>
       Горячее
-    </div>
-    <div className={styles.foodCategory}>
+    </Button>
+    <Button className={styles.foodCategory}>
       Закуски
-    </div>
-    <div className={styles.foodCategory}>
+    </Button>
+    <Button className={styles.foodCategory}>
       Десерты
-    </div>
-    <div className={styles.foodCategory}>
+    </Button>
+    <Button className={styles.foodCategory}>
       Напитки
-    </div>
+    </Button>
   </div>
 );
 

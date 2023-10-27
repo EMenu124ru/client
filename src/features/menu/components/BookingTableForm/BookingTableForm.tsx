@@ -1,5 +1,8 @@
 import React, { FC, memo } from 'react';
 import { Button, MenuItem, Select, TextField } from '@mui/material';
+import 'moment/locale/de';
+import { LocalizedDatePicker } from '@shared/LocalizedDatePicker/LocalizedDatePicker';
+import { LocalizedTimePicker } from '@shared/LocalizedTimePicker/LocalizedTimePicker';
 import styles from './BookingTableForm.module.scss';
 
 /**
@@ -7,6 +10,17 @@ import styles from './BookingTableForm.module.scss';
  */
 const BookingTableFormComponent: FC = () => (
   <div className={styles.bookingTableForm}>
+    <div>
+      Бронирование столиков
+    </div>
+    <div className={styles.dateTimePicker}>
+      <div className={styles.picker}>
+        <LocalizedDatePicker />
+      </div>
+      <div className={styles.picker}>
+        <LocalizedTimePicker />
+      </div>
+    </div>
     <div className={styles.availableTables}>
       Свободных столиков: 10
     </div>

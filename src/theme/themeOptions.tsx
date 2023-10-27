@@ -6,7 +6,7 @@ declare module '@mui/material/Button' {
     /** Auth main button theme. */
     'authMain': true;
 
-    /** Dish card button theme. */
+    /** Image card button theme. */
     'cardDishButton': true;
   }
 }
@@ -48,6 +48,7 @@ export const themeOptions = createTheme({
         variant: 'standard',
         inputProps: {
           style: {
+            boxSizing: 'border-box',
             paddingTop: '0.75em',
             paddingLeft: '0.75em',
           },
