@@ -13,7 +13,19 @@
     "prepare": "husky install",
     "pre-commit": "lint-staged",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "type-check": "tsc-files"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn lint:fix --cache --max-warnings=0",
+      "yarn type-check"
+    ]
   },
   "dependencies": {
     "@storybook/react": "^6.5.13",
@@ -35,12 +47,8 @@
     "react-dom": "^18.2.0",
     "react-redux": "^7.2.6",
     "react-refresh": "^0.11.0",
-    "react-router-dom": "^6.3.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "react-router-dom": "^6.3.0",
+    "tsc-files": "1.1.4"
   },
   "devDependencies": {
     "@nabla/vite-plugin-eslint": "^1.5.0",
@@ -79,9 +87,5 @@
     "vite": "^4.5.0",
     "vite-tsconfig-paths": "^4.2.1",
     "@vitejs/plugin-react-swc": "^3.3.2"
-  },
-  "lint-staged": {
-    "src/**/*.{ts,tsx}": "eslint --cache --fix",
-    "src/**/*.css": "stylelint --fix"
   }
 }
