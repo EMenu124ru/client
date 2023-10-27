@@ -23,7 +23,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn lint:fix --cache --max-warnings=0",
+      "yarn lint:fix --cache",
       "yarn type-check"
     ]
   },

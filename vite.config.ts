@@ -10,4 +10,9 @@ export default defineConfig({
     eslintPlugin({ eslintOptions: { cache: false } }),
     tsconfigPaths(),
   ],
+  preview: {
+    host: true,
+    strictPort: true,
+    port: 8081,
+  },
 });
