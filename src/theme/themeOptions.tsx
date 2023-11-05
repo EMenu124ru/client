@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material';
+import { ruRU } from '@mui/x-date-pickers/locales';
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
@@ -11,7 +12,24 @@ declare module '@mui/material/Button' {
   }
 }
 
+const colors = {
+  primary: '#D98F00',
+  primaryVariant: '#FFE1A7',
+  secondary: '#FAEECD',
+  black: '#000000',
+
+};
+
 export const themeOptions = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: colors.primary,
+    },
+    secondary: {
+      main: colors.secondary,
+    },
+  },
   components: {
     MuiButton: {
       variants: [
@@ -45,35 +63,56 @@ export const themeOptions = createTheme({
     },
     MuiTextField: {
       defaultProps: {
-        variant: 'standard',
-        inputProps: {
-          style: {
-            boxSizing: 'border-box',
-            paddingTop: '0.75em',
-            paddingLeft: '0.75em',
-          },
-        },
         InputProps: {
           disableUnderline: true,
         },
+        variant: 'filled',
+
       },
+      variants: [
+        {
+          props: {
+            variant: 'filled',
+          },
+          style: {
+            '.MuiFilledInput-root': {
+              'color': 'black',
+              'borderRadius': '10px',
+              'height': 'auto',
+              'backgroundColor': colors.primaryVariant,
+              'boxSizing': 'border-box',
+              'padding': '21px 35px',
+
+              '&.Mui-focused': {
+                '&:hover': {
+                  backgroundColor: colors.primaryVariant,
+                },
+                'backgroundColor': colors.primaryVariant,
+              },
+
+              '&.Mui-error': {
+                border: '1px solid red',
+              },
+
+              '& input': {
+                color: colors.black,
+                opacity: 0.5,
+                padding: '0',
+              },
+              '&:hover': {
+                backgroundColor: colors.primaryVariant,
+              },
+            },
+          },
+        },
+      ],
       styleOverrides: {
         root: {
+
           height: '3em',
         },
       },
     },
   },
-  palette: {
-    primary: {
-      main: '#CD8700',
-    },
-    secondary: {
-      main: '#FAEECD',
-    },
-    text: {
-      secondary: '#3C2700',
-      primary: '#FFFFFF',
-    },
-  },
-});
+},
+ruRU);

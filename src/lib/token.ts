@@ -1,13 +1,13 @@
 import { AuthResponse } from '@models/authResponse';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '@lib/constants';
 import { StorageService } from './storage';
 
-const TOKEN_KEY = 'TOKENS';
 export namespace TokenService {
 
   /** Get token from local storage. */
   export function getTokens(): AuthResponse | null {
-    const accessToken = StorageService.get<string>('access_token') ?? undefined;
-    const refreshToken = StorageService.get<string>('refresh_token') ?? undefined;
+    const accessToken = StorageService.get<string>(ACCESS_TOKEN) ?? undefined;
+    const refreshToken = StorageService.get<string>(REFRESH_TOKEN) ?? undefined;
     if (!accessToken || !refreshToken) {
       return null;
     }
@@ -19,13 +19,14 @@ export namespace TokenService {
    * @param tokens Tokens.
    */
   export function saveToken(tokens: AuthResponse): void {
-    StorageService.set('refresh_token', tokens.refreshToken);
-    StorageService.set('access_token', tokens.refreshToken);
+    StorageService.set(ACCESS_TOKEN, tokens.refreshToken);
+    StorageService.set(REFRESH_TOKEN, tokens.refreshToken);
   }
 
   /** Destroy token from local storage. */
-  export function destroyToken(): void {
-    return StorageService.remove(TOKEN_KEY);
+  export function destroyTokens(): void {
+    StorageService.remove(ACCESS_TOKEN);
+    StorageService.remove(REFRESH_TOKEN);
   }
 
   /** Check whether the storage have token or not. */

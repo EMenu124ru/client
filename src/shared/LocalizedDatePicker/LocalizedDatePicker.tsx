@@ -1,7 +1,5 @@
 import React, { FC, memo } from 'react';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import 'moment/locale/ru';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker } from '@mui/x-date-pickers';
 import { DatePickerProps } from '@mui/x-date-pickers/DatePicker/DatePicker.types';
 import { SxProps } from '@mui/material';
 import styles from './LocalizedDatePicker.module.scss';
@@ -29,26 +27,24 @@ const LocalizedDatePickerComponent: FC<LocalizedDatePickerProps<Date>> = props =
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale="ru">
-      <DatePicker
-        {...props}
-        className={styles.datePicker}
-        slotProps={{
-          textField: {
-            variant: 'standard',
-            sx: {
-              boxSizing: 'border-box',
-              paddingTop: '0.75em',
-              paddingLeft: '0.75em',
-            },
-            InputProps: { disableUnderline: true },
+    <DatePicker
+      {...props}
+      className={styles.datePicker}
+      slotProps={{
+        textField: {
+          variant: 'standard',
+          sx: {
+            boxSizing: 'border-box',
+            paddingTop: '0.75em',
+            paddingLeft: '0.75em',
           },
-          popper: {
-            sx: calendarDialogStyleProps,
-          },
-        }}
-      />
-    </LocalizationProvider>
+          InputProps: { disableUnderline: true },
+        },
+        popper: {
+          sx: calendarDialogStyleProps,
+        },
+      }}
+    />
   );
 };
 

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Navigate, Outlet, To } from 'react-router-dom';
 import { useAppSelector } from '@store/store';
 
-import { TokenService } from '@api/services/token';
+import { TokenService } from '@lib/token';
 import { selectIsAuth } from '@store/auth/selectors';
 
 /**

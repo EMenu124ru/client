@@ -6,7 +6,7 @@ import { AuthDto } from '@api/dtos/authDto';
 import { AuthMapper } from '@api/mappers/authMapper';
 import { RegisterArguments } from '@models/registerArguments';
 import { LoginArguments } from '@models/loginArguments';
-import { TokenService } from '@api/services/token';
+import { TokenService } from '@lib/token';
 
 export namespace AuthService {
 

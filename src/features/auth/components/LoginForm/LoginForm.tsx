@@ -87,15 +87,24 @@ const LoginFormComponent: FC = () => {
               Авторизация
             </div>
             <TextField
-              className={`${styles.inputTextLogin} ${errors.phone && styles.inputError}`}
+              sx={{
+                height: '60px',
+              }}
               name="phone"
+              fullWidth
+              error={!!errors.phone}
               onChange={handleChange}
               value={values.phone}
               helperText={errors.phone}
               placeholder="Номер телефона"
             />
             <TextField
-              className={`${styles.inputTextLogin} ${errors.password && styles.inputError}`}
+              type="password"
+              sx={{
+                height: '60px',
+              }}
+              error={!!errors.password}
+              fullWidth
               name="password"
               onChange={handleChange}
               value={values.password}

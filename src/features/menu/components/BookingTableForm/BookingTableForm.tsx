@@ -29,7 +29,18 @@ const BookingTableFormComponent: FC = () => (
       <MenuItem className={styles.option} value="wall">Столик у стены</MenuItem>
       <MenuItem className={styles.option} value="toilet">Столик у туалета (иногда воняет )</MenuItem>
     </Select>
-    <TextField className={styles.commentInput} placeholder="Комментарии к брони" variant="standard" />
+    <TextField
+      inputProps={{
+        style: {
+          color: 'black',
+        },
+      }}
+      className={styles.commentInput}
+      multiline
+      rows={4}
+      placeholder="Комментарии к брони"
+      variant="standard"
+    />
     <Button className={styles.submitButton} variant="cardDishButton">
       Забронировать
     </Button>
