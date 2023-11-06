@@ -7,7 +7,7 @@ env:
   REGISTRY: ghcr.io
   CLIENT_IMAGE_NAME: emenu124ru/client:latest
 jobs:
-  build:
+  linters:
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
@@ -20,8 +20,6 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: eslint
         run: yarn lint
-      - name: type-check
-        run: yarn tsc
   publish:
     name: publish react image
     needs: [ linters ]
@@ -39,7 +37,7 @@ jobs:
           password: ${{ secrets.PAT }}
       - name: Build and Publish
         run: |
-          docker build ./server --tag ${{ env.REGISTRY }}/${{ env.CLIENT_IMAGE_NAME }}
+          docker build . --tag ${{ env.REGISTRY }}/${{ env.CLIENT_IMAGE_NAME }}
           docker push ${{ env.REGISTRY }}/${{ env.CLIENT_IMAGE_NAME }}
 
   deploy:

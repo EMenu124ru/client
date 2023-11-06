@@ -1,4 +1,4 @@
-import { StorageService } from '@api/services/storage';
+import { StorageService } from '@lib/storage';
 import { Dish } from '@models/dish';
 
 /**

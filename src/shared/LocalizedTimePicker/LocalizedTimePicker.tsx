@@ -1,6 +1,5 @@
-import { FC, memo } from 'react';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
+import { FC, memo, RefAttributes } from 'react';
+import { TimePicker } from '@mui/x-date-pickers';
 import { SxProps } from '@mui/material';
 import { TimePickerProps } from '@mui/x-date-pickers/TimePicker/TimePicker.types';
 import styles from './LocalizedTimePicker.module.scss';
@@ -8,7 +7,7 @@ import styles from './LocalizedTimePicker.module.scss';
 /**
  * Props for date picker.
  */
-type LocalizedTimPickerProps<TDate> = TimePickerProps<TDate> & React.RefAttributes<HTMLDivElement>;
+type LocalizedTimPickerProps<TDate> = TimePickerProps<TDate> & RefAttributes<HTMLDivElement>;
 
 /**
  * Localized time picker.
@@ -29,26 +28,24 @@ const LocalizedTimePickerComponent: FC<LocalizedTimPickerProps<Date>> = props =>
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale="ru">
-      <TimePicker
-        {...props}
-        className={styles.timePicker}
-        slotProps={{
-          textField: {
-            variant: 'standard',
-            sx: {
-              boxSizing: 'border-box',
-              paddingTop: '0.75em',
-              paddingLeft: '0.75em',
-            },
-            InputProps: { disableUnderline: true },
+    <TimePicker
+      {...props}
+      className={styles.timePicker}
+      slotProps={{
+        textField: {
+          variant: 'standard',
+          sx: {
+            boxSizing: 'border-box',
+            paddingTop: '0.75em',
+            paddingLeft: '0.75em',
           },
-          popper: {
-            sx: calendarDialogStyleProps,
-          },
-        }}
-      />
-    </LocalizationProvider>
+          InputProps: { disableUnderline: true },
+        },
+        popper: {
+          sx: calendarDialogStyleProps,
+        },
+      }}
+    />
   );
 };
 
