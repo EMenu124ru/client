@@ -19,13 +19,15 @@
 
     "baseUrl": "src",
     "paths": {
+      "@/*": ["/*"],
       "@assets/*": ["assets/*"],
       "@features/*": ["features/*"],
       "@api/*": ["api/*"],
       "@models/*": ["models/*"],
       "@lib/*": ["lib/*"],
       "@store/*": ["store/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@hooks/*": ["hooks/*"]
     }
   },
   "include": [

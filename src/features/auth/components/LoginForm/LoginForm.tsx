@@ -1,5 +1,5 @@
-import { Alert, Box, Button, Snackbar, TextField } from '@mui/material';
-import React, { FC, memo, useEffect, useState } from 'react';
+import { Box, Button, TextField, Typography } from '@mui/material';
+import React, { FC, memo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import { phoneNumberValidators } from '@lib/regex';
@@ -9,14 +9,13 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@store/store';
 import { login } from '@store/auth/dispatchers';
 import { selectAuthErrors, selectIsAuthLoading } from '@store/auth/selectors';
+import { useSnackbar } from '@hooks/useSnackbar';
 import styles from './LoginForm.module.scss';
 
 /**
  * Login form.
  */
 const LoginFormComponent: FC = () => {
-  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
-
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -38,9 +37,11 @@ const LoginFormComponent: FC = () => {
     navigate('/auth/signup');
   };
 
+  const { snackError } = useSnackbar();
+
   useEffect(() => {
     if (authErrors?.length) {
-      setOpenSnackbar(true);
+      snackError(authErrors);
     }
   }, [authErrors]);
 
@@ -73,23 +74,20 @@ const LoginFormComponent: FC = () => {
         setSubmitting(false);
       }}
     >
-      {({
-        values,
-        errors,
-        handleChange,
-        handleSubmit,
-      }) => (
+      {({ values, errors, handleChange, handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <Box
-            className={styles.boxButtons}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            padding="0"
+            gap="30px"
+            width="100%"
           >
             <div className={styles.textLogin}>
-              Авторизация
+              <Typography variant="h2">Авторизация</Typography>
             </div>
             <TextField
-              sx={{
-                height: '60px',
-              }}
               name="phone"
               fullWidth
               error={!!errors.phone}
@@ -100,9 +98,6 @@ const LoginFormComponent: FC = () => {
             />
             <TextField
               type="password"
-              sx={{
-                height: '60px',
-              }}
               error={!!errors.password}
               fullWidth
               name="password"
@@ -113,37 +108,36 @@ const LoginFormComponent: FC = () => {
             />
             <Button
               className={styles.buttonEnter}
-              variant="authMain"
+              variant="contained"
+              fullWidth
               type="submit"
-              disabled={!!errors.phone?.length || !!errors.password?.length || isLoading}
+              sx={{
+                textTransform: 'none',
+              }}
+              disabled={
+                !!errors.phone?.length || !!errors.password?.length || isLoading
+              }
             >
-              Войти
+              <Typography variant="body2">
+                Войти
+              </Typography>
             </Button>
-            <Button onClick={onSignUpButtonClickHandler}>
-              Регистрация
+            <Button
+              fullWidth
+              sx={{
+                textTransform: 'none',
+              }}
+              onClick={onSignUpButtonClickHandler}
+            >
+              <Typography variant="body2">
+                Регистрация
+              </Typography>
             </Button>
           </Box>
-          {
-            authErrors && (
-              <Snackbar
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={openSnackbar}
-                autoHideDuration={3000}
-                onClose={() => setOpenSnackbar(false)}
-              >
-                <Alert
-                  onClose={() => setOpenSnackbar(false)}
-                  severity="error"
-                >
-                  {authErrors}
-                </Alert>
-              </Snackbar>
-            )
-          }
+
         </form>
       )}
     </Formik>
-
   );
 };
 

@@ -1,6 +1,5 @@
 import React, { FC, memo } from 'react';
 import { Button, MenuItem, Select, TextField } from '@mui/material';
-import 'moment/locale/de';
 import { LocalizedDatePicker } from '@shared/LocalizedDatePicker/LocalizedDatePicker';
 import { LocalizedTimePicker } from '@shared/LocalizedTimePicker/LocalizedTimePicker';
 import styles from './BookingTableForm.module.scss';

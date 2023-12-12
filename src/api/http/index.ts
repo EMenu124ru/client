@@ -8,7 +8,7 @@ import { TokenService } from '@lib/token';
 export const API_URL = import.meta.env.VITE_APP_BASE_URL;
 
 const $api = axios.create({
-  // withCredentials: true,
+  withCredentials: true,
   baseURL: `${API_URL}/api/v1`,
 });
 
@@ -31,7 +31,7 @@ $api.interceptors.request.use(config => {
   if (!config.headers) {
     config.headers = {};
   }
-  config.headers.Authorization = `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`;
+  config.headers.Authorization = `JWT ${localStorage.getItem(ACCESS_TOKEN)}`;
   return config;
 });
 
@@ -45,7 +45,7 @@ $api.interceptors.response.use(response => response, async error => {
       const { accessToken, refreshToken: newRefreshToken } = await refresh(refreshToken);
       localStorage.setItem(ACCESS_TOKEN, accessToken);
       localStorage.setItem(REFRESH_TOKEN, newRefreshToken);
-      $api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+      $api.defaults.headers.common.Authorization = `JWT ${accessToken}`;
       return $api(originalRequest);
     }
   }

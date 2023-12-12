@@ -7,7 +7,7 @@ import style from './GreetingText.module.scss';
  */
 const GreetingTextComponent: FC = () => (
   <Box className={style.wrapper}>
-    <Typography variant="h3" className={style.mainText}>
+    <Typography variant="h1" className={style.mainText}>
       Добро пожаловать!
     </Typography>
     <Typography variant="body1" className={style.subText}>

@@ -1,48 +1,76 @@
-import { createTheme } from '@mui/material';
+import { createTheme, PaletteOptions } from '@mui/material';
 import { ruRU } from '@mui/x-date-pickers/locales';
+import { PaletteColor } from '@mui/material/styles/createPalette';
+import {
+  TypographyOptions,
+  Variant,
+} from '@mui/material/styles/createTypography';
+import {
+  fontFamily,
+  FontWeights,
+  typographyVariants,
+} from './typography';
 
-declare module '@mui/material/Button' {
-  interface ButtonPropsVariantOverrides {
-
-    /** Auth main button theme. */
-    'authMain': true;
-
-    /** Image card button theme. */
-    'cardDishButton': true;
-  }
-}
+const theme = createTheme();
 
 const colors = {
   primary: '#D98F00',
   primaryVariant: '#FFE1A7',
   secondary: '#FAEECD',
   black: '#000000',
+  white: '#FFFFFF',
 
 };
 
+const palette: PaletteOptions = {
+  mode: 'light',
+  primary: theme.palette.augmentColor({
+    color: { main: colors.primary },
+  }),
+  secondary: theme.palette.augmentColor({
+    color: { main: colors.secondary },
+  }),
+};
+
 export const themeOptions = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: colors.primary,
-    },
-    secondary: {
-      main: colors.secondary,
-    },
+  palette,
+  typography: {
+    fontFamily,
+    fontSize: 12,
+    fontWeightRegular: FontWeights.Regular,
+    ...Object.entries(typographyVariants).reduce<TypographyOptions>((acc, [key, value]) => {
+      acc[key as Variant] = value.style;
+      return acc;
+    }, {} as TypographyOptions),
   },
   components: {
+    MuiTypography: {
+      defaultProps: {
+        variant: 'body2',
+      },
+    },
     MuiButton: {
+      styleOverrides: {
+        root: {
+          padding: '21px 35px',
+          boxSizing: 'border-box',
+          fontSize: '1rem',
+          borderRadius: '10px',
+
+        },
+      },
       variants: [
         {
-          props: { variant: 'authMain' },
+          props: { variant: 'contained' },
           style: {
-            'color': '#FFE1A7',
-            'backgroundColor': '#D98F00',
+            'color': colors.white,
+            'backgroundColor': colors.primary,
             'boxShadow': '0px 4px 25px rgba(0, 0, 0, 0.08)',
-            'width': '100%',
-            // eslint-disable-next-line @typescript-eslint/naming-convention
             ':hover': {
               backgroundColor: '#D98F00',
+            },
+            '&.Mui-disabled': {
+              backgroundColor: (palette.primary as PaletteColor).dark,
             },
           },
         },
@@ -67,14 +95,18 @@ export const themeOptions = createTheme({
           disableUnderline: true,
         },
         variant: 'filled',
-
       },
       variants: [
         {
           props: {
             variant: 'filled',
           },
-          style: {
+          style: ({ theme: innerTheme }) => ({
+            'height': 'auto',
+            '.MuiFormHelperText-root': {
+              position: 'absolute',
+              bottom: '-20px',
+            },
             '.MuiFilledInput-root': {
               'color': 'black',
               'borderRadius': '10px',
@@ -82,6 +114,7 @@ export const themeOptions = createTheme({
               'backgroundColor': colors.primaryVariant,
               'boxSizing': 'border-box',
               'padding': '21px 35px',
+              'border': `1px solid ${colors.primaryVariant}`,
 
               '&.Mui-focused': {
                 '&:hover': {
@@ -95,6 +128,7 @@ export const themeOptions = createTheme({
               },
 
               '& input': {
+                fontSize: innerTheme.typography.body2.fontSize,
                 color: colors.black,
                 opacity: 0.5,
                 padding: '0',
@@ -103,12 +137,11 @@ export const themeOptions = createTheme({
                 backgroundColor: colors.primaryVariant,
               },
             },
-          },
+          }),
         },
       ],
       styleOverrides: {
         root: {
-
           height: '3em',
         },
       },
