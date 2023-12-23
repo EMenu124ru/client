@@ -31,6 +31,7 @@ export namespace TokenService {
 
   /** Check whether the storage have token or not. */
   export function hasToken(): boolean {
+    console.log(document.cookie);
     return getTokens() !== null;
   }
 }

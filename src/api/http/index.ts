@@ -14,16 +14,10 @@ const $api = axios.create({
 
 /**
  * Register user.
- * @param refreshToken Refresh token.
  */
-export function refresh(refreshToken: string): Promise<AuthResponse> {
-  return $api.post<AuthDto>(
-    'clients/refresh',
-    {
-      refresh: refreshToken,
-    },
-  )
-    .then(response => AuthMapper.fromDto(response.data));
+export async function refresh() {
+  const response = await axios.post<AuthDto>(`${API_URL}/api/v1/clients/refresh`);
+  return AuthMapper.fromDto(response.data);
 }
 
 // Set auth interceptors.
@@ -31,25 +25,14 @@ $api.interceptors.request.use(config => {
   if (!config.headers) {
     config.headers = {};
   }
-  config.headers.Authorization = `JWT ${localStorage.getItem(ACCESS_TOKEN)}`;
   return config;
 });
 
-$api.interceptors.response.use(response => response, async error => {
+$api.interceptors.response.use(response => response, error => {
   const originalRequest = error.config;
   if (error.response.status === 401 && !originalRequest._retry) {
     originalRequest._retry = true;
-    const tokens = TokenService.getTokens();
-    if (tokens) {
-      const { refreshToken } = tokens;
-      const { accessToken, refreshToken: newRefreshToken } = await refresh(refreshToken);
-      localStorage.setItem(ACCESS_TOKEN, accessToken);
-      localStorage.setItem(REFRESH_TOKEN, newRefreshToken);
-      $api.defaults.headers.common.Authorization = `JWT ${accessToken}`;
-      return $api(originalRequest);
-    }
   }
-  TokenService.destroyTokens();
   return Promise.reject(error);
 });
 
