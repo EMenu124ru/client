@@ -6,26 +6,25 @@ import { login, refreshTokens, register } from './dispatchers';
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    cleanAuthErrors(state) {
+      state.error = '';
+    },
+  },
   extraReducers: builder => builder
-    .addCase(refreshTokens.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
+    .addCase(refreshTokens.fulfilled, state => {
+      state.isRefreshLoading = false;
       state.isAuth = true;
 
       state.error = undefined;
-
-      console.log('fulfilled', payload);
     })
-    .addCase(refreshTokens.rejected, (state, { error }) => {
-      state.error = error.message;
-      state.isLoading = false;
-      console.log('rejected', error);
+    .addCase(refreshTokens.rejected, state => {
+      state.isAuth = false;
+      state.isRefreshLoading = false;
     })
-    .addCase(refreshTokens.pending, (state, { payload }) => {
-      state.isLoading = true;
-
+    .addCase(refreshTokens.pending, state => {
+      state.isRefreshLoading = true;
       state.error = undefined;
-      console.log('pending', payload);
     })
     .addCase(login.pending, state => {
       state.isLoading = true;
@@ -56,7 +55,7 @@ export const authSlice = createSlice({
     .addCase(register.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
-    })
-  ,
-
+    }),
 });
+
+export const { cleanAuthErrors } = authSlice.actions;

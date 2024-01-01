@@ -8,7 +8,11 @@ export const dishSlice = createSlice({
     ...dishAdapter.getInitialState(),
     ...initialState,
   },
-  reducers: {},
+  reducers: {
+    cleanDishesErrors(state) {
+      state.error = '';
+    },
+  },
   extraReducers: builder => builder
     .addCase(getDishes.pending, state => {
       state.isLoading = true;
@@ -24,3 +28,5 @@ export const dishSlice = createSlice({
       state.isLoading = false;
     }),
 });
+
+export const { cleanDishesErrors } = dishSlice.actions;

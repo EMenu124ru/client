@@ -11,6 +11,12 @@ export interface AuthState {
   /** Loading state. */
   readonly isLoading: boolean;
 
+  /** Refresh loading state. */
+  readonly isRefreshLoading: boolean;
+
+  /** Refresh errors. */
+  readonly refreshError?: string;
+
   /** Error. */
   readonly error?: string;
 }
@@ -18,4 +24,5 @@ export interface AuthState {
 export const initialState: AuthState = {
   isAuth: TokenService.hasToken(),
   isLoading: false,
+  isRefreshLoading: false,
 };

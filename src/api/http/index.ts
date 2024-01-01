@@ -1,9 +1,6 @@
 import axios from 'axios';
-import { AuthResponse } from '@models/authResponse';
 import { AuthDto } from '@api/dtos/authDto';
 import { AuthMapper } from '@api/mappers/authMapper';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '@lib/constants';
-import { TokenService } from '@lib/token';
 
 export const API_URL = import.meta.env.VITE_APP_BASE_URL;
 
@@ -28,9 +25,10 @@ $api.interceptors.request.use(config => {
   return config;
 });
 
-$api.interceptors.response.use(response => response, error => {
+$api.interceptors.response.use(response => response, async error => {
   const originalRequest = error.config;
   if (error.response.status === 401 && !originalRequest._retry) {
+    await refresh();
     originalRequest._retry = true;
   }
   return Promise.reject(error);

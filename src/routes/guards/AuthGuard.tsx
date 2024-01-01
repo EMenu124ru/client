@@ -1,20 +1,19 @@
-import { FC, useEffect } from 'react';
+import { FC, memo, useEffect } from 'react';
 import { Navigate, Outlet, To } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@store/store';
 
-import { TokenService } from '@lib/token';
-import { selectIsAuth, selectIsAuthLoading } from '@store/auth/selectors';
+import { selectIsAuth, selectRefreshLoading } from '@store/auth/selectors';
 import { refreshTokens } from '@store/auth/dispatchers';
 import { CircularProgress } from '@mui/material';
 
 /**
  * Auth guard.
  */
-export const AuthGuard: FC = () => {
+export const AuthGuard: FC = memo(() => {
   const dispatch = useAppDispatch();
 
   const isAuthorized = useAppSelector(selectIsAuth);
-  const isLoading = useAppSelector(selectIsAuthLoading);
+  const isLoading = useAppSelector(selectRefreshLoading);
 
   const authCheck = () => {
     dispatch(refreshTokens());
@@ -35,4 +34,4 @@ export const AuthGuard: FC = () => {
     return <Navigate to={redirect} replace />;
   }
   return <Outlet />;
-};
+});
