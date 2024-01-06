@@ -1,5 +1,3 @@
-import { TokenService } from '@lib/token';
-
 /**
  * Auth state.
  */
@@ -22,7 +20,7 @@ export interface AuthState {
 }
 
 export const initialState: AuthState = {
-  isAuth: TokenService.hasToken(),
+  isAuth: false,
   isLoading: false,
   isRefreshLoading: false,
 };

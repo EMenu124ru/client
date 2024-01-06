@@ -1,28 +1,21 @@
 import { useNavigate } from 'react-router-dom';
-import {
-  Alert,
-  Box,
-  Button,
-  Snackbar,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { useAppDispatch } from '@store/store';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { phoneNumberValidators } from '@lib/regex';
 import { Formik } from 'formik';
 import { register } from '@store/auth/dispatchers';
 import { RegisterArguments } from '@models/registerArguments';
 import { useSelector } from 'react-redux';
 import { selectAuthErrors, selectIsAuthLoading } from '@store/auth/selectors';
+import { cleanAuthErrors } from '@store/auth/slice';
+import { useSnackbar } from '@hooks/useSnackbar';
 import styles from './SignUpForm.module.scss';
 
 /**
  * Sign up form group.
  */
 export const SignUpForm: FC = () => {
-  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
-
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -49,9 +42,12 @@ export const SignUpForm: FC = () => {
     navigate('/auth/login');
   };
 
+  const { snackError } = useSnackbar();
+
   useEffect(() => {
     if (authErrors?.length) {
-      setOpenSnackbar(true);
+      snackError(authErrors);
+      dispatch(cleanAuthErrors());
     }
   }, [authErrors]);
 
@@ -152,18 +148,6 @@ export const SignUpForm: FC = () => {
               <Typography>Войти</Typography>
             </Button>
           </Box>
-          {authErrors && (
-            <Snackbar
-              anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-              open={openSnackbar}
-              autoHideDuration={3000}
-              onClose={() => setOpenSnackbar(false)}
-            >
-              <Alert onClose={() => setOpenSnackbar(false)} severity="error">
-                {authErrors}
-              </Alert>
-            </Snackbar>
-          )}
         </form>
       )}
     </Formik>

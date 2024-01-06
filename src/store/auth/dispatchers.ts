@@ -5,10 +5,18 @@ import { LoginArguments } from '@models/loginArguments';
 import { RegisterArguments } from '@models/registerArguments';
 import { refresh } from '@api/http';
 import { RootState } from '@store/index';
+import { withFieldError } from '@lib/withFieldError';
 
 export const login = createAsyncThunk<AuthResponse, LoginArguments>(
   'auth/login',
-  ({ phoneNumber, password }) => AuthService.login({ phoneNumber, password }),
+  ({ phoneNumber, password }, { rejectWithValue }) =>
+    withFieldError<AuthResponse>({
+      rejectWithValue,
+      handler: AuthService.login({
+        phoneNumber,
+        password,
+      }),
+    }),
   {
     condition(_: LoginArguments, { getState }) {
       const { auth } = getState() as RootState;
@@ -24,13 +32,10 @@ export const login = createAsyncThunk<AuthResponse, LoginArguments>(
 
 export const register = createAsyncThunk<AuthResponse, RegisterArguments>(
   'auth/register',
-  ({ phoneNumber, password, secondName, firstName }) =>
-    AuthService.register({ phoneNumber, password, secondName, firstName }),
+  ({ phoneNumber, password, secondName, firstName }, { rejectWithValue }) =>
+    withFieldError({ handler: AuthService.register({ phoneNumber, password, secondName, firstName }), rejectWithValue }),
   {
-    condition(
-      _: RegisterArguments,
-      { getState },
-    ) {
+    condition(_: RegisterArguments, { getState }) {
       const { auth } = getState() as RootState;
 
       // Need to avoid typescript

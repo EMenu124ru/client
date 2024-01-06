@@ -151,22 +151,6 @@ module.exports = {
     'jsdoc/check-alignment': 'error',
     'jsdoc/newline-after-description': ['error', 'never'],
     'jsdoc/no-bad-blocks': 'error',
-    'jsdoc/require-jsdoc': [
-      'error', {
-        contexts: [
-          'MethodDefinition:not([accessibility=\'private\'])',
-          'ClassDeclaration',
-          'ClassProperty:not([accessibility=\'private\'])',
-          'TSEnumDeclaration',
-          'ExportNamedDeclaration[declaration.type="TSInterfaceDeclaration"]',
-          'TSInterfaceDeclaration :matches(TSCallSignatureDeclaration, TSMethodSignature, TSPropertySignature)',
-        ],
-        checkConstructors: false,
-        checkGetters: true,
-        checkSetters: true,
-        enableFixer: false,
-      },
-    ],
     'jsdoc/require-description-complete-sentence': [
       'error', {
         tags: ['see', 'copyright'],

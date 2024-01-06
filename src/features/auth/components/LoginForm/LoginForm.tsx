@@ -10,6 +10,7 @@ import { useAppDispatch } from '@store/store';
 import { login } from '@store/auth/dispatchers';
 import { selectAuthErrors, selectIsAuthLoading } from '@store/auth/selectors';
 import { useSnackbar } from '@hooks/useSnackbar';
+import { cleanAuthErrors } from '@store/auth/slice';
 import styles from './LoginForm.module.scss';
 
 /**
@@ -42,6 +43,7 @@ const LoginFormComponent: FC = () => {
   useEffect(() => {
     if (authErrors?.length) {
       snackError(authErrors);
+      dispatch(cleanAuthErrors());
     }
   }, [authErrors]);
 
@@ -66,8 +68,8 @@ const LoginFormComponent: FC = () => {
         }
         return errors;
       }}
-      onSubmit={async(values, { setSubmitting }) => {
-        await loginHandler({
+      onSubmit={(values, { setSubmitting }) => {
+        loginHandler({
           password: values.password,
           phoneNumber: values.phone,
         });

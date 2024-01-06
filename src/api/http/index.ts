@@ -13,7 +13,7 @@ const $api = axios.create({
  * Register user.
  */
 export async function refresh() {
-  const response = await axios.post<AuthDto>(`${API_URL}/api/v1/clients/refresh`);
+  const response = await axios.post<AuthDto>(`${API_URL}/api/v1/clients/refresh`, {}, { withCredentials: true });
   return AuthMapper.fromDto(response.data);
 }
 
