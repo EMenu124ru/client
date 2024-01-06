@@ -1,22 +1,35 @@
-import { FC } from 'react';
+import { FC, memo, useEffect } from 'react';
 import { Navigate, Outlet, To } from 'react-router-dom';
-import { useAppSelector } from '@store/store';
-
-import { TokenService } from '@api/services/token';
-import { selectIsAuth } from '@store/auth/selectors';
+import { useAppDispatch, useAppSelector } from '@store/store';
+import { selectIsAuth, selectRefreshLoading } from '@store/auth/selectors';
+import { refreshTokens } from '@store/auth/dispatchers';
+import { CircularProgress } from '@mui/material';
 
 /**
  * Auth guard.
  */
-export const NoAuthGuard: FC = () => {
-  const hasToken = TokenService.hasToken();
-  const isAuthorized = useAppSelector(selectIsAuth);
+export const NoAuthGuard: FC = memo(() => {
+  const dispatch = useAppDispatch();
 
-  if (isAuthorized && hasToken) {
+  const isAuthorized = useAppSelector(selectIsAuth);
+  const isLoading = useAppSelector(selectRefreshLoading);
+  const authCheck = () => {
+    dispatch(refreshTokens());
+  };
+
+  useEffect(() => {
+    authCheck();
+  }, []);
+
+  if (isLoading) {
+    return <CircularProgress />;
+  }
+
+  if (isAuthorized) {
     const redirect: To = {
       pathname: 'menu',
     };
     return <Navigate to={redirect} replace />;
   }
   return <Outlet />;
-};
+});

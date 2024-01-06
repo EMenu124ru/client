@@ -1,13 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { initialState } from './state';
-import { login, register } from './dispatchers';
+import { login, refreshTokens, register } from './dispatchers';
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    cleanAuthErrors(state) {
+      state.error = '';
+    },
+  },
   extraReducers: builder => builder
+    .addCase(refreshTokens.fulfilled, state => {
+      state.isRefreshLoading = false;
+      state.isAuth = true;
+
+      state.error = undefined;
+    })
+    .addCase(refreshTokens.rejected, state => {
+      state.isAuth = false;
+      state.isRefreshLoading = false;
+    })
+    .addCase(refreshTokens.pending, state => {
+      state.isRefreshLoading = true;
+      state.error = undefined;
+    })
     .addCase(login.pending, state => {
       state.isLoading = true;
 
@@ -37,7 +55,7 @@ export const authSlice = createSlice({
     .addCase(register.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
-    })
-  ,
-
+    }),
 });
+
+export const { cleanAuthErrors } = authSlice.actions;

@@ -6,9 +6,12 @@ body {
   padding: 100px 10px 0 10px;
   min-width: 900px;
   display: flex;
+gap: 10px;
+
 
   .dishesWrapper {
-    margin-left: 0;
+    display: flex;
+    justify-content: space-between;
   }
 
   .bookingTableFormWrapper {

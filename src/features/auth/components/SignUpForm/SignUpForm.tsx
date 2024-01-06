@@ -1,5 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { Alert, Box, Button, Snackbar, TextField } from '@mui/material';
+import {
+  Alert,
+  Box,
+  Button,
+  Snackbar,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { useAppDispatch } from '@store/store';
 import React, { FC, useEffect, useState } from 'react';
 import { phoneNumberValidators } from '@lib/regex';
@@ -26,7 +33,12 @@ export const SignUpForm: FC = () => {
   /**
    * Register handler.
    */
-  const registerHandler = ({ phoneNumber, password, firstName, secondName }: RegisterArguments): void => {
+  const registerHandler = ({
+    phoneNumber,
+    password,
+    firstName,
+    secondName,
+  }: RegisterArguments): void => {
     dispatch(register({ phoneNumber, password, firstName, secondName }));
   };
 
@@ -84,21 +96,12 @@ export const SignUpForm: FC = () => {
         setSubmitting(false);
       }}
     >
-      {({
-        values,
-        errors,
-        handleChange,
-        handleSubmit,
-      }) => (
+      {({ values, errors, handleChange, handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <Box
-            className={styles.boxButtons}
-          >
-            <div className={styles.signupText}>
-              Регистрация
-            </div>
+          <Box className={styles.boxButtons}>
+            <div className={styles.signupText}>Регистрация</div>
             <TextField
-              className={`${styles.signupInput} ${errors.secondName && styles.inputError}`}
+              error={!!errors.secondName}
               onChange={handleChange}
               value={values.secondName}
               name="secondName"
@@ -106,7 +109,7 @@ export const SignUpForm: FC = () => {
               placeholder="Фамилия"
             />
             <TextField
-              className={`${styles.signupInput} ${errors.firstName && styles.inputError}`}
+              error={!!errors.firstName}
               onChange={handleChange}
               value={values.firstName}
               name="firstName"
@@ -114,7 +117,7 @@ export const SignUpForm: FC = () => {
               placeholder="Имя"
             />
             <TextField
-              className={`${styles.signupInput} ${errors.phone && styles.inputError}`}
+              error={!!errors.phone}
               name="phone"
               onChange={handleChange}
               value={values.phone}
@@ -122,7 +125,8 @@ export const SignUpForm: FC = () => {
               placeholder="Номер телефона"
             />
             <TextField
-              className={`${styles.signupInput} ${errors.password && styles.inputError}`}
+              error={!!errors.password}
+              type="password"
               name="password"
               onChange={handleChange}
               value={values.password}
@@ -130,8 +134,9 @@ export const SignUpForm: FC = () => {
               placeholder="Пароль"
             />
             <Button
+              fullWidth
+              variant="contained"
               className={styles.enterButton}
-              variant="authMain"
               type="submit"
               disabled={
                 !!errors.phone?.length ||
@@ -141,29 +146,24 @@ export const SignUpForm: FC = () => {
                 isLoading
               }
             >
-              Регистрация
+              <Typography>Регистрация</Typography>
             </Button>
-            <Button onClick={onLoginButtonClickHandler}>
-              Войти
+            <Button fullWidth onClick={onLoginButtonClickHandler}>
+              <Typography>Войти</Typography>
             </Button>
           </Box>
-          {
-            authErrors && (
-              <Snackbar
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={openSnackbar}
-                autoHideDuration={3000}
-                onClose={() => setOpenSnackbar(false)}
-              >
-                <Alert
-                  onClose={() => setOpenSnackbar(false)}
-                  severity="error"
-                >
-                  {authErrors}
-                </Alert>
-              </Snackbar>
-            )
-          }
+          {authErrors && (
+            <Snackbar
+              anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+              open={openSnackbar}
+              autoHideDuration={3000}
+              onClose={() => setOpenSnackbar(false)}
+            >
+              <Alert onClose={() => setOpenSnackbar(false)} severity="error">
+                {authErrors}
+              </Alert>
+            </Snackbar>
+          )}
         </form>
       )}
     </Formik>

@@ -9,7 +9,7 @@ import { selectBasket } from '@store/basket/selectors';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { getDishes } from '@store/dishes/dispatchers';
 import { selectAllDishes, selectDishesErrors } from '@store/dishes/selectors';
-import { useSnackbar } from 'notistack';
+import { useSnackbar } from '@hooks/useSnackbar';
 import styles from './MenuPage.module.scss';
 
 /**
@@ -20,7 +20,7 @@ export const MenuPage: FC = () => {
   const basket = useAppSelector(selectBasket);
   const errors = useAppSelector(selectDishesErrors);
   const dishes = useAppSelector(selectAllDishes);
-  const { enqueueSnackbar } = useSnackbar();
+  const { snackError } = useSnackbar();
   const fetchDishes = async() => {
     await dispatch(getDishes());
   };
@@ -31,7 +31,7 @@ export const MenuPage: FC = () => {
 
   useEffect(() => {
     if (errors) {
-      enqueueSnackbar('Ошибка получений блюд', { variant: 'error' });
+      snackError('Ошибка получений блюд');
     }
   }, [errors]);
 
