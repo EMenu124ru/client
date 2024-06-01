@@ -1,5 +1,5 @@
-import { Dish } from '@models/dish';
-import { createEntityAdapter } from '@reduxjs/toolkit';
+import { Dish } from "@models/dish";
+import { createEntityAdapter } from "@reduxjs/toolkit";
 
 /**
  * Image state.
@@ -14,15 +14,15 @@ export interface DishState {
 }
 
 export const dishAdapter = createEntityAdapter<Dish>({
-  /**
+    /**
    * Select by dish id.
    * @param dish Dish.
    */
-  selectId: dish => dish.id,
+    selectId: (dish) => dish.id,
 
-  sortComparer: (a, b) => a.title.localeCompare(b.title),
+    sortComparer: (a, b) => a.name.localeCompare(b.name),
 });
 
 export const initialState: DishState = {
-  isLoading: false,
+    isLoading: false,
 };

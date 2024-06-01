@@ -1,0 +1,12 @@
+@import "../../../../theme/index";
+.orangeBackground {
+  @include auth_orange_background('login-background.png')
+}
+
+.blackBackground {
+  @extend %auth_black_shape_background
+}
+
+.logo {
+  @extend %auth_logo
+}

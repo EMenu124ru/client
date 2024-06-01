@@ -1,8 +1,0 @@
-@import "src/theme";
-
-.signUpForm {
-  @extend %auth_grid_form
-}
-.dishImage {
-  @extend %image_dish
-}

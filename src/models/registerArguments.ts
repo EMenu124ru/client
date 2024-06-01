@@ -12,6 +12,6 @@ export interface RegisterArguments {
   /** First name. */
   readonly firstName: string;
 
-  /** Second name. */
-  readonly secondName: string;
+  /** Last name. */
+  readonly lastName: string;
 }

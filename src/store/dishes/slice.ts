@@ -1,32 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { dishAdapter, initialState } from './state';
-import { getDishes } from './dispatchers';
+import { createSlice } from "@reduxjs/toolkit";
+
+import { dishAdapter, initialState } from "./state";
 
 export const dishSlice = createSlice({
-  name: 'dishes',
-  initialState: {
-    ...dishAdapter.getInitialState(),
-    ...initialState,
-  },
-  reducers: {
-    cleanDishesErrors(state) {
-      state.error = '';
+    name: "dishes",
+    initialState: {
+        ...dishAdapter.getInitialState(),
+        ...initialState,
     },
-  },
-  extraReducers: builder => builder
-    .addCase(getDishes.pending, state => {
-      state.isLoading = true;
-      state.error = undefined;
-    })
-    .addCase(getDishes.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.error = undefined;
-      dishAdapter.addMany(state, action.payload);
-    })
-    .addCase(getDishes.rejected, (state, action) => {
-      state.error = action.error.message;
-      state.isLoading = false;
-    }),
+    reducers: {
+        cleanDishesErrors(state) {
+            state.error = "";
+        },
+    },
 });
 
 export const { cleanDishesErrors } = dishSlice.actions;

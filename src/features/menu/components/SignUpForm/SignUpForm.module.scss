@@ -1,0 +1,18 @@
+@import "../../../../theme/index";
+
+.boxButtons {
+  @extend %auth_box_buttons;
+  .signupInput {
+    @extend %auth_input_text;
+  }
+}
+
+
+
+.enterButton {
+  color: $cream-color-input;
+}
+
+.signupText {
+  @extend %auth_form_text;
+}

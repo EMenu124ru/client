@@ -1,7 +1,7 @@
-import $api from '@api/http';
-import { DishDto } from '@api/dtos/dishDto';
-import { DishMapper } from '@api/mappers/dishMapper';
-import { Dish } from '@models/dish';
+import { DishDto } from "@api/dtos/dishDto";
+import $api from "@api/http";
+import { DishMapper } from "@api/mappers/dishMapper";
+import { Dish } from "@models/dish";
 
 interface GetDishesResponse {
 
@@ -31,9 +31,9 @@ export namespace DishService {
    * Get all dishes.
    */
   export function getAll(): Promise<Dish[]> {
-    return $api.get<GetDishesResponse>('dishes')
-      .then(response => response)
-      .then(response => response.data.results.map(dishDto => DishMapper.fromDto(dishDto)));
+      return $api.get<GetDishesResponse>("dishes")
+          .then((response) => response)
+          .then((response) => response.data.results.map((dishDto) => DishMapper.fromDto(dishDto)));
   }
 
   /**
@@ -41,7 +41,7 @@ export namespace DishService {
    * @param id Image id.
    */
   export function get(id: string): Promise<Dish> {
-    return $api.get(`dishes/${id}`)
-      .then(response => DishMapper.fromDto(response.data));
+      return $api.get(`dishes/${id}`)
+          .then((response) => DishMapper.fromDto(response.data));
   }
 }

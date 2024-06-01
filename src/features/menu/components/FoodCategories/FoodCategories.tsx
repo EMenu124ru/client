@@ -1,37 +1,70 @@
-import React, { FC, memo } from 'react';
-import { Button } from '@mui/material';
-import styles from './FoodCategories.module.scss';
+import { ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
+import { useGetDishesCategoriesQuery } from "@store/dishCategories/api";
+import React, {
+    FC, useEffect, useMemo
+} from "react";
+
+interface FoodCategoriesProps {
+  categoryId?: number
+  changeCategoryIdHandler: (categoryId: number) => void
+}
 
 /**
- * Food categories column.
+ * Food dishCategories column.
  */
-const FoodCategoriesComponent: FC = () => (
-  <div className={styles.foodCategories}>
-    <Button variant="text" className={styles.foodCategory}>
-      Пицца
-    </Button>
-    <Button className={styles.foodCategory}>
-      Салаты
-    </Button>
-    <Button className={styles.foodCategory}>
-      Супы
-    </Button>
-    <Button className={styles.foodCategory}>
-      Паста
-    </Button>
-    <Button className={styles.foodCategory}>
-      Горячее
-    </Button>
-    <Button className={styles.foodCategory}>
-      Закуски
-    </Button>
-    <Button className={styles.foodCategory}>
-      Десерты
-    </Button>
-    <Button className={styles.foodCategory}>
-      Напитки
-    </Button>
-  </div>
-);
+export const FoodCategories: FC<FoodCategoriesProps> = ({
+    categoryId,
+    changeCategoryIdHandler,
+}) => {
+    const {
+        data: dishesCategoriesData
+    } = useGetDishesCategoriesQuery();
 
-export const FoodCategories = memo(FoodCategoriesComponent);
+    const dishesCategories = useMemo(() => dishesCategoriesData || [], [dishesCategoriesData]);
+
+    const onChangeCategoryId = (event: React.MouseEvent<HTMLElement>, value: number | null) => {
+        if (value !== null) {
+            changeCategoryIdHandler(value);
+        }
+    };
+
+    useEffect(() => {
+        if (categoryId === undefined && dishesCategories.length) {
+            changeCategoryIdHandler(dishesCategories[0].id);
+        }
+    }, [dishesCategories]);
+
+    return (
+        <ToggleButtonGroup
+            onChange={onChangeCategoryId}
+            value={categoryId}
+            sx={{
+                borderRadius: "20px",
+                boxSizing: "border-box",
+                padding: "24px 30px",
+                bgcolor: "secondary.main",
+                gap: "10px",
+            }}
+            orientation="vertical"
+            exclusive
+        >
+            {dishesCategories.map((item) => (
+                <ToggleButton
+                    sx={{
+                        textTransform: "none",
+                        border: "0",
+                    }}
+                    value={item.id}
+                >
+                    <Typography
+                        color={categoryId === item.id ? "primary.main" : "black"}
+                        fontWeight="700"
+                        variant="body2"
+                    >
+                        {item.name}
+                    </Typography>
+                </ToggleButton>
+            ))}
+        </ToggleButtonGroup>
+    );
+};

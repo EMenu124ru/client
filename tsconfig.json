@@ -1,25 +1,32 @@
 {
   "compilerOptions": {
-    "types": ["vite/client"],
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "useUnknownInCatchVariables": false,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
+    "types": [
+      "vitest/globals",
+      "jest-dom"
+    ],
     "baseUrl": "src",
     "paths": {
-      "@/*": ["/*"],
+      "@/*": ["./*"],
       "@assets/*": ["assets/*"],
       "@features/*": ["features/*"],
       "@api/*": ["api/*"],
@@ -27,14 +34,16 @@
       "@lib/*": ["lib/*"],
       "@store/*": ["store/*"],
       "@shared/*": ["shared/*"],
-      "@hooks/*": ["hooks/*"]
+      "@hooks/*": ["hooks/*"],
+      "@routes/*": ["routes/*"]
     }
   },
   "include": [
-    "src",
-    ".eslintrc.js",
-    ".stylelintrc.js",
-    "vite.config.ts"
-  ],
-  "references": [{ "path": "./tsconfig.node.json" }],
+    "vitest.config.ts",
+    "vitest.config.ts",
+    "prettier.config.js",
+    ".eslintrc.cjs",
+    "./src",
+    "./@types"
+  ]
 }

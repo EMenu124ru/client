@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios';
+import { AxiosError } from "axios";
 
 interface FieldErrorDetail {
   field: string;
@@ -11,4 +11,4 @@ interface FieldErrorData {
 
 export type FieldError = AxiosError<FieldErrorData>;
 
-export const isFieldError = (error: AxiosError): error is FieldError => 'detail' in (error.response?.data as object);
+export const isFieldError = (error: AxiosError): error is FieldError => "detail" in (error.response?.data as object);

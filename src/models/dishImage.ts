@@ -7,5 +7,5 @@ export interface DishImage {
   readonly id: number;
 
   /** Image path. */
-  readonly 'image': string;
+  readonly "image": string;
 }

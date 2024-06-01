@@ -6,7 +6,7 @@ export namespace StorageService {
    * @param value Value to store.
    */
   export function set<T>(key: string, value: T): void {
-    localStorage.setItem(key, JSON.stringify(value));
+      localStorage.setItem(key, JSON.stringify(value));
   }
 
   /**
@@ -14,11 +14,11 @@ export namespace StorageService {
    * @param key Store key.
    */
   export function get<T>(key: string): T | null {
-    const value = localStorage.getItem(key);
-    if (!value) {
-      return null;
-    }
-    return JSON.parse(value) as T;
+      const value = localStorage.getItem(key);
+      if (!value) {
+          return null;
+      }
+      return JSON.parse(value) as T;
   }
 
   /**
@@ -26,6 +26,6 @@ export namespace StorageService {
    * @param key Store key.
    */
   export function remove(key: string): void {
-    localStorage.removeItem(key);
+      localStorage.removeItem(key);
   }
 }

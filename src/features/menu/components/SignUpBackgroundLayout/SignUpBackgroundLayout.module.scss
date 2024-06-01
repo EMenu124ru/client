@@ -1,0 +1,13 @@
+@import "../../../../theme/index";
+.blackBackground {
+  @extend %auth_black_shape_background
+}
+
+.orangeBackground {
+  @include auth_orange_background('signup-background.png');
+  right: 0px;
+}
+
+.logo {
+  @extend %auth_logo
+}

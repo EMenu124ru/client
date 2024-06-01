@@ -1,1 +1,1 @@
-export { LocalizedDatePicker } from './LocalizedDatePicker';
+export { DatePicker } from "./DatePicker";
