@@ -7,6 +7,7 @@ export default {
     component: FoodCategories,
 } as ComponentMeta<typeof FoodCategories>;
 
+// @ts-ignore
 const Template: ComponentStory<typeof FoodCategories> = () => <FoodCategories />;
 
 export const Main = Template.bind({});

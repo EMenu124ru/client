@@ -1,24 +1,38 @@
+import {
+    BookingTableFormSubmitButton
+} from "@features/menu/components/BookingTableForm/BookingTableFormSubmitButton/BookingTableFormSubmitButton";
 import { phoneNumberValidators } from "@lib/regex";
 import {
-    Box,
-    Button, MenuItem, Select, TextField, Typography
+    Box, MenuItem, Select, TextField, Typography
 } from "@mui/material";
 import { Loader } from "@shared/Loader/Loader";
 import { DatePicker } from "@shared/LocalizedDatePicker/DatePicker";
 import { LocalizedTimePicker } from "@shared/LocalizedTimePicker/LocalizedTimePicker";
-import { selectBasket } from "@store/basket/selectors";
 import { useMakeReservationMutation } from "@store/reservation/api";
+import { useGetRestaurantPlacesQuery, useGetRestaurantTagsQuery } from "@store/restaurants/api";
 import { Formik } from "formik";
-import React, { FC, memo } from "react";
-import { useSelector } from "react-redux";
+import React, { FC, memo, useMemo } from "react";
 
 import styles from "./BookingTableForm.module.scss";
+
+interface Props {
+    currentPlace?: number;
+}
 
 /**
  * Booking table.
  */
-const BookingTableFormComponent: FC = () => {
-    const basket = useSelector(selectBasket);
+const BookingTableFormComponent: FC<Props> = ({
+    currentPlace
+}) => {
+    const { data: placesData, isFetching: isPlacesFetching } = useGetRestaurantPlacesQuery(
+        { tag: currentPlace?.toString() ?? "" },
+        { skip: currentPlace === undefined }
+    );
+    const places = useMemo(() => placesData?.free || [], [placesData]);
+
+    const { data: tagsData, isFetching: isTagsFetching } = useGetRestaurantTagsQuery();
+    console.log(tagsData);
 
     const [makeResesrvation, { isLoading }] = useMakeReservationMutation();
 
@@ -80,13 +94,24 @@ const BookingTableFormComponent: FC = () => {
                             boxSizing: "border-box"
                         }}
                         >
-                            <Typography variant="body3">
-                                Свободных столиков: 10
-                            </Typography>
+                            {
+                                isPlacesFetching
+                                    ? <Loader />
+                                    : (
+                                        <Typography variant="body3">
+                                            Свободных столиков:
+                                            {" "}
+                                            {places.length}
+                                        </Typography>
+                                    )
+                            }
+
                         </Box>
                         <Select
                             fullWidth
                             disableUnderline
+                            placeholder={places.length ? "Выберите столик" : "Нет свободных столиков"}
+                            disabled={!places.length}
                             variant="filled"
                             sx={{
                                 display: "flex",
@@ -97,14 +122,23 @@ const BookingTableFormComponent: FC = () => {
                                     display: "flex",
                                     justifyContent: "center",
                                     alignItems: "center"
-                                }
+                                },
+                                "& .MuiInputBase-input:focus": {
+                                    borderRadius: "20px",
+                                },
                             }}
                         >
-                            <MenuItem className={styles.option} value="window">Столик у окна</MenuItem>
-                            <MenuItem className={styles.option} value="wall">Столик у стены</MenuItem>
-                            <MenuItem className={styles.option} value="toilet">
-                                Столик у туалета (иногда воняет)
-                            </MenuItem>
+                            {
+                                places.map((place) => (
+                                    <MenuItem
+                                        className={styles.option}
+                                        key={place.id}
+                                        value={place.id}
+                                    >
+                                        {place.place}
+                                    </MenuItem>
+                                ))
+                            }
                         </Select>
                         <TextField
                             inputProps={{
@@ -118,11 +152,7 @@ const BookingTableFormComponent: FC = () => {
                             placeholder="Комментарии к брони"
                             variant="standard"
                         />
-                        <Button disabled={!Object.keys(basket).length} fullWidth variant="cardDishButton">
-                            {isLoading
-                                ? <Loader color="secondary" />
-                                : "Забронировать"}
-                        </Button>
+                        <BookingTableFormSubmitButton isLoading={isLoading} />
                     </>
 
                 )}

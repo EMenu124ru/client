@@ -5,7 +5,7 @@ import React, { FC } from "react";
 type LoaderProps = CircularProgressProps;
 
 export const Loader: FC<LoaderProps> = (props) => (
-    <Box width="100%" display="flex" justifyContent="center">
+    <Box width="100%" my={1} display="flex" justifyContent="center">
         <CircularProgress {...props} />
     </Box>
 );

@@ -170,11 +170,14 @@ export const themeOptions = createTheme(
                                 padding: "21px 35px",
                                 border: `1px solid ${colors.primaryVariant}`,
 
+                                "& .MuiInputBase-input:focus": {
+                                    borderRadius: "10px",
+                                },
+
                                 "&.Mui-focused": {
                                     "&:hover": {
                                         backgroundColor: colors.primaryVariant,
                                     },
-                                    backgroundColor: colors.primaryVariant,
                                 },
 
                                 "&.Mui-error": {

@@ -1,21 +1,27 @@
 import { baseQueryWithReauth } from "@lib/baseQueryWithReauth";
-import { GetRestaurantPlacesRequest, GetRestaurantPlacesResponse, GetRestaurantsResponse } from "@models/restaurants";
+import {
+    GetPlacesTagsResponse,
+    GetRestaurantPlacesRequest,
+    GetRestaurantPlacesResponse,
+    GetRestaurantsResponse
+} from "@models/restaurants";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { objectToCamel, objectToSnake } from "ts-case-convert";
 
 export const restaurantsApi = createApi({
     baseQuery: baseQueryWithReauth,
     reducerPath: "restaurantsApi",
-    tagTypes: ["Restaurants", "RestaurantsPlaces"],
+    tagTypes: ["Restaurants", "RestaurantsPlaces", "PlacesTags"],
     endpoints: (builder) => ({
         getRestaurantPlaces: builder.query<GetRestaurantPlacesResponse, GetRestaurantPlacesRequest>({
-            providesTags: () => ["RestaurantsPlaces"],
+            providesTags:
+              (result, error, { tag }) => [{ type: "RestaurantsPlaces", id: tag }],
             query: ({ tag }) => ({
                 url: "restaurants/places",
                 method: "GET",
                 credentials: "include",
                 params: objectToSnake({
-                    tags: tag
+                    restaurantId: tag
                 }),
 
             }),
@@ -26,6 +32,14 @@ export const restaurantsApi = createApi({
                 response.reserved = response.reserved.map(objectToCamel);
                 return response;
             }
+        }),
+        getRestaurantTags: builder.query<GetPlacesTagsResponse, void>({
+            providesTags: () => ["PlacesTags"],
+            query: () => ({
+                url: "restaurants/tags",
+                method: "GET",
+                credentials: "include",
+            }),
         }),
         getRestaurants: builder.query<GetRestaurantsResponse, void>({
             providesTags: () => ["Restaurants"],
@@ -51,4 +65,4 @@ export const restaurantsApi = createApi({
     })
 });
 
-export const { useGetRestaurantsQuery, useGetRestaurantPlacesQuery } = restaurantsApi;
+export const { useGetRestaurantsQuery, useGetRestaurantPlacesQuery, useGetRestaurantTagsQuery } = restaurantsApi;

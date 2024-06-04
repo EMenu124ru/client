@@ -1,4 +1,5 @@
 import { isFieldError } from "@models/fieldError";
+// @ts-ignore
 import { GetThunkAPI } from "@reduxjs/toolkit/dist/createAsyncThunk";
 import { AxiosError } from "axios";
 

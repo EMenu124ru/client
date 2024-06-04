@@ -1,3 +1,8 @@
+enum TagTypes {
+  Location = "LOCATION",
+  NumberOfSeats = "NUMBER_OF_SEATS",
+}
+
 export interface Schedule {
   id: number
   weekDay: number
@@ -9,6 +14,12 @@ export interface Restaurant {
   id: number
   address: string
   schedule: Schedule[]
+}
+
+export interface Tag {
+  id: string
+  name: string
+  type: TagTypes
 }
 
 export type GetRestaurantsResponse = Restaurant[];
@@ -27,6 +38,8 @@ export interface GetRestaurantPlacesResponse {
   reserved: RestaurantTable[]
   busy: RestaurantTable[]
 }
+
+export type GetPlacesTagsResponse = Tag[];
 
 export interface GetRestaurantPlacesRequest {
   tag: string

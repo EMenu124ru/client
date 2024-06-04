@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "typeRoots": ["./node_modules/@types/", "./types", "./node_modules"],
     "useDefineForClassFields": true,
     "lib": [
       "DOM",
@@ -21,8 +22,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": [
-      "vitest/globals",
-      "jest-dom"
+
     ],
     "baseUrl": "src",
     "paths": {
@@ -45,5 +45,5 @@
     ".eslintrc.cjs",
     "./src",
     "./@types"
-  ]
+  ],
 }

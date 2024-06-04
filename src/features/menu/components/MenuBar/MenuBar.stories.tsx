@@ -7,6 +7,7 @@ export default {
     component: MenuBar,
 } as ComponentMeta<typeof MenuBar>;
 
+// @ts-ignore
 const Template: ComponentStory<typeof MenuBar> = () => <MenuBar />;
 
 export const Main = Template.bind({});

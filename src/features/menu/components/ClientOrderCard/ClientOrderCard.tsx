@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { selectBasket } from "@store/basket/selectors";
-import React, { FC } from "react";
+import React, { FC, memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 
 import styles from "./ClientOrderCard.module.scss";
@@ -10,7 +10,17 @@ import styles from "./ClientOrderCard.module.scss";
  */
 const ClientOrderCardComponent: FC = () => {
     const basket = useSelector(selectBasket);
-    console.log(basket);
+
+    const totalSum = useMemo(() => {
+        let sum = 0;
+        (Object.keys(basket) as unknown as number[]).forEach(
+            (dishId) => {
+                sum += basket[dishId].price * basket[dishId].quantity;
+            }
+        );
+        return sum;
+    }, [basket]);
+
     return (
         <Box className={styles.clientOrderCardWrapper}>
             <Box>Ваш заказ</Box>
@@ -22,10 +32,10 @@ const ClientOrderCardComponent: FC = () => {
             ))}
             <Box className={styles.totalSum}>
                 Сумма:
-                {0}
+                {totalSum}
             </Box>
         </Box>
     );
 };
 
-export const ClientOrderCard = ClientOrderCardComponent;
+export const ClientOrderCard = memo(ClientOrderCardComponent);

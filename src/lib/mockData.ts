@@ -12,6 +12,10 @@ export const mockImage: DishImage = {
 export const mockDishCategory: DishCategory = {
     id: 1,
     name: "fish",
+    icon: {
+        file: "",
+        filename: "",
+    },
 };
 
 export const mockDish: Dish = {
