@@ -10,13 +10,24 @@ module.exports = {
   },
   plugins: ["unused-imports", "simple-import-sort", 'react-hooks'],
   rules: {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/prop-types": "off",
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     // Indent with 4 spaces
     "indent": ["error", 4],
-// Indent JSX with 4 spaces
+    // Indent JSX with 4 spaces
     "react/jsx-indent": ["error", 4],
-// Indent props with 4 spaces
+    // Indent props with 4 spaces
     "react/jsx-indent-props": ["error", 4],
     "react/react-in-jsx-scope": "off",
     "no-param-reassign": "off",

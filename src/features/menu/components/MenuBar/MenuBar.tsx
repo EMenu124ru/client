@@ -20,7 +20,7 @@ export const MenuBarComponent: FC<MenuBarProps> = ({
     currentPlace,
     changePlaceHandler
 }) => {
-    const pages = ["Меню", "Лк", "Что нибудь еще"];
+    const pages: string[] = [];
     const [anchorElPages, setAnchorElPages] = useState<null | HTMLElement>(null);
 
     /**
@@ -40,7 +40,7 @@ export const MenuBarComponent: FC<MenuBarProps> = ({
     };
 
     return (
-        <AppBar component="nav" className={styles.appBar}>
+        <AppBar color="secondary" component="nav" className={styles.appBar}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <img className={styles.logo} src={logo} alt="No source :(" />

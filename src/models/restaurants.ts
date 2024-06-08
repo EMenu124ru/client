@@ -24,7 +24,7 @@ export interface Tag {
 
 export type GetRestaurantsResponse = Restaurant[];
 
-interface RestaurantTable {
+export interface RestaurantTable {
   id: number
   place: string
   tags: {

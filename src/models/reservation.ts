@@ -3,7 +3,8 @@ export interface MakeReservationRequest {
   restaurant: number
   order: Order,
   place: number,
-  city: number,
+  comment: string,
+  tagToPlace?: number,
 }
 
 interface OrderDish {
@@ -14,6 +15,6 @@ interface OrderDish {
 
 interface Order {
   comment: string
-  client: number
+  client?: number
   dishes: OrderDish[],
 }

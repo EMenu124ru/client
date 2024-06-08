@@ -33,10 +33,13 @@ export const restaurantsApi = createApi({
                 return response;
             }
         }),
-        getRestaurantTags: builder.query<GetPlacesTagsResponse, void>({
+        getRestaurantTags: builder.query<GetPlacesTagsResponse, GetRestaurantPlacesRequest>({
             providesTags: () => ["PlacesTags"],
-            query: () => ({
+            query: ({ tag }) => ({
                 url: "restaurants/tags",
+                params: objectToSnake({
+                    restaurantId: tag
+                }),
                 method: "GET",
                 credentials: "include",
             }),

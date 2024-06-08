@@ -7,7 +7,7 @@ import { FC, memo, RefAttributes } from "react";
 /**
  * Props for date picker.
  */
-type LocalizedTimPickerProps<TDate> = TimePickerProps<TDate> & RefAttributes<HTMLDivElement>;
+type LocalizedTimPickerProps<TDate extends Date> = TimePickerProps<TDate> & RefAttributes<HTMLDivElement>;
 
 /**
  * Localized time picker.
@@ -50,6 +50,7 @@ const LocalizedTimePickerComponent: FC<LocalizedTimPickerProps<Date>> = (props) 
                     variant: "standard",
                     placeholder: "Время",
                     InputProps: { disableUnderline: true },
+                    ...props?.slotProps?.textField,
                 },
                 popper: {
                     sx: calendarDialogStyleProps,

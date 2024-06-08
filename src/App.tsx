@@ -1,9 +1,9 @@
 import { ThemeProvider } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { AuthProvider } from "@routes/providers/AuthProvider";
 import { RootRouter } from "@routes/RootRouter";
-import ru from "date-fns/locale/ru";
+import { ru } from "date-fns/locale/ru";
 import { SnackbarProvider } from "notistack";
 import type { FC } from "react";
 import { Suspense } from "react";

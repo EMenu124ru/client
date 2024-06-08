@@ -65,6 +65,9 @@ export const themeOptions = createTheme(
                             fontSize: innerTheme.typography.body3.fontSize,
                             border: 0,
                         },
+                        "&.Mui-error": {
+                            border: "1px solid red",
+                        },
                     })
                 },
             },
@@ -175,9 +178,7 @@ export const themeOptions = createTheme(
                                 },
 
                                 "&.Mui-focused": {
-                                    "&:hover": {
-                                        backgroundColor: colors.primaryVariant,
-                                    },
+                                    backgroundColor: colors.primaryVariant,
                                 },
 
                                 "&.Mui-error": {

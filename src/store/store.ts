@@ -27,7 +27,13 @@ export const store = configureStore({
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
-    }).concat(authApi.middleware, dishesApi.middleware),
+    }).concat(
+        authApi.middleware,
+        categoriesApi.middleware,
+        reservationApi.middleware,
+        dishesApi.middleware,
+        restaurantsApi.middleware
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

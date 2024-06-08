@@ -5,7 +5,7 @@ import React, { FC } from "react";
 /**
  * Props for date picker.
  */
-type LocalizedDatePickerProps<TDate> = DatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>;
+type LocalizedDatePickerProps<TDate extends Date> = DatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>;
 
 export const DatePicker: FC<LocalizedDatePickerProps<Date>> = (props) => (
     <DatePickerMui
@@ -16,6 +16,7 @@ export const DatePicker: FC<LocalizedDatePickerProps<Date>> = (props) => (
                 variant: "standard",
                 placeholder: "Дата",
                 InputProps: { disableUnderline: true },
+                ...props?.slotProps?.textField,
             },
         }}
     />

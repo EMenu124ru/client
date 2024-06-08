@@ -4,13 +4,11 @@ import {
     Box, ButtonBase, Menu, MenuItem, Typography
 } from "@mui/material";
 import { clearBasket } from "@store/basket/slice";
+import { useAppDispatch } from "@store/index";
 import { useGetRestaurantsQuery } from "@store/restaurants/api";
 import React, {
     FC, useMemo, useState
 } from "react";
-
-// eslint-disable-next-line import/extensions
-import { useAppDispatch } from "@/store";
 
 interface RestaurantsSelectorProps {
   currentPlace?: number,

@@ -1,6 +1,5 @@
+import { RootState } from "@store/index";
 import { restaurantsAdapter } from "@store/restaurants/state";
-
-import { RootState } from "@/store";
 
 export const {
     selectById: selectRestaurantById,
