@@ -24,6 +24,7 @@ export async function refresh() {
 // Set auth interceptors.
 $api.interceptors.request.use((config) => {
     if (!config.headers) {
+        // @ts-ignore
         config.headers = {};
     }
     return config;
