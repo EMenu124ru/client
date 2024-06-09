@@ -39,7 +39,10 @@ export interface GetRestaurantPlacesResponse {
   busy: RestaurantTable[]
 }
 
-export type GetPlacesTagsResponse = Tag[];
+export type GetPlacesTagsResponse = {
+  "location" : Tag[],
+  "numberOfSeats": Tag[]
+};
 
 export interface GetRestaurantPlacesRequest {
   tag: string

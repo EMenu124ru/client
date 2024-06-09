@@ -2,9 +2,9 @@ export interface MakeReservationRequest {
   arrivalTime: string
   restaurant: number
   order: Order,
-  place: number,
   comment: string,
-  tagToPlace?: number,
+  tagToLocation: number,
+  tagToNumber: number,
 }
 
 interface OrderDish {

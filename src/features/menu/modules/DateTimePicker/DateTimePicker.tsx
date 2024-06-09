@@ -35,7 +35,7 @@ export const DateTimePicker: FC<Props> = ({ ...props }) => {
     const [, setDateTime] = useState<Date | null>(null);
 
     const onDateChange = (newDate: Date | null) => {
-        if (!newDate) {
+        if (!newDate || !isValid(newDate)) {
             return;
         }
         setDateTime((prevState) => {
@@ -61,11 +61,10 @@ export const DateTimePicker: FC<Props> = ({ ...props }) => {
     const textFieldProps = useMemo(() => ({
         onBlur: props.onBlur,
         error: props.error,
-        helperText: props.helperText,
     }), [props.error, props.helperText, props.onBlur]);
 
     const onTimeChange = (newDate: Date | null) => {
-        if (!newDate) {
+        if (!newDate || !isValid(newDate)) {
             return;
         }
         setDateTime((prevState) => {

@@ -43,6 +43,8 @@ export const restaurantsApi = createApi({
                 method: "GET",
                 credentials: "include",
             }),
+            transformResponse:
+              (baseQueryReturnValue: object) => objectToCamel(baseQueryReturnValue) as GetPlacesTagsResponse,
         }),
         getRestaurants: builder.query<GetRestaurantsResponse, void>({
             providesTags: () => ["Restaurants"],
