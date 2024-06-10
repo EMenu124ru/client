@@ -69,7 +69,7 @@ export const DateTimePicker: FC<Props> = ({ ...props }) => {
         }
         setDateTime((prevState) => {
             if (!prevState) {
-                onChange(newDate.toISOString());
+                onChange(name)(newDate.toISOString());
                 return newDate;
             }
 
@@ -82,7 +82,7 @@ export const DateTimePicker: FC<Props> = ({ ...props }) => {
             updatedDate = setSeconds(updatedDate, seconds);
 
             if (onChange) {
-                onChange(updatedDate.toISOString());
+                onChange(name)(updatedDate.toISOString());
             }
             return updatedDate;
         });
