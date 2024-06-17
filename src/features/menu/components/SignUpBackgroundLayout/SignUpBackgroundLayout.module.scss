@@ -1,6 +1,7 @@
 @import "../../../../theme/index";
 .blackBackground {
-  @extend %auth_black_shape_background
+  @extend %auth_black_shape_background;
+  min-width: 500px;
 }
 
 .orangeBackground {
