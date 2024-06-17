@@ -25,7 +25,7 @@ const SignUpPageComponent: FC = () => (
             <Grid item xs={4} sx={{ display: { xs: "none", md: "block" } }}>
                 <img src={Dish} alt="No source :(" className={styles.dishImage} />
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid sx={{ display: { xs: "none", md: "block" } }} item xs={6} md={4}>
                 <GreetingText />
             </Grid>
         </Grid>

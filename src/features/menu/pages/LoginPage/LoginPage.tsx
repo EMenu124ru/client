@@ -19,7 +19,7 @@ const LoginPageComponent: FC = () => (
             justifyContent="center"
             alignItems="center"
         >
-            <Grid item xs={6} md={4}>
+            <Grid item sx={{ display: { xs: "none", md: "block" } }} xs={6} md={4}>
                 <GreetingText />
             </Grid>
             <Grid item xs={4} sx={{ display: { xs: "none", md: "block" } }}>
